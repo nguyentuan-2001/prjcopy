@@ -1,0 +1,18 @@
+{
+"type": "FeatureCollection",
+"name": "stations",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "osm_id": 8895558438, "highway": "bus_stop", "name": "Đối diện cổng Parabol Đại học Bách Khoa", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8411961, 21.004979 ] } },
+{ "type": "Feature", "properties": { "osm_id": 10036774718, "highway": "bus_stop", "name": "Cổng Parabol Đại học Bách Khoa (cột trước)", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8415722, 21.0049035 ] } },
+{ "type": "Feature", "properties": { "osm_id": 8895558432, "highway": "bus_stop", "name": "Cổng Parabol Đại học Bách Khoa (cột sau)", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8415719, 21.0049501 ] } },
+{ "type": "Feature", "properties": { "osm_id": 738813777, "highway": "bus_stop", "name": "170-172 Lê Thanh Nghị", "public_transport": "platform", "bus": "yes", "shelter": "no", "bench": "no", "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8439287, 21.0018593 ] } },
+{ "type": "Feature", "properties": { "osm_id": 738815106, "highway": "bus_stop", "name": "Viện Tin học Pháp ngữ", "public_transport": "platform", "bus": "yes", "shelter": "yes", "bench": "yes", "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8474994, 21.0028717 ] } },
+{ "type": "Feature", "properties": { "osm_id": 8766627165, "highway": "bus_stop", "name": "Sân vận động Bách Khoa", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8476142, 21.0028351 ] } },
+{ "type": "Feature", "properties": { "osm_id": 8766627164, "highway": "bus_stop", "name": "Đại học Bách Khoa", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8450354, 21.0067276 ] } },
+{ "type": "Feature", "properties": { "osm_id": 738813884, "highway": "bus_stop", "name": "B13 Ký Túc Xá Bách Khoa", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8473059, 21.0061932 ] } },
+{ "type": "Feature", "properties": { "osm_id": 8822946815, "highway": "bus_stop", "name": "Đối diện B13 Ký Túc Xá Bách Khoa", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8472342, 21.0064649 ] } },
+{ "type": "Feature", "properties": { "osm_id": 738814459, "highway": "bus_stop", "name": "120 Đại Cồ Việt", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": "Hanoibus" }, "geometry": { "type": "Point", "coordinates": [ 105.8454939, 21.0080784 ] } },
+{ "type": "Feature", "properties": { "osm_id": 738813696, "highway": "bus_stop", "name": "65 Đại Cồ Việt", "public_transport": "platform", "bus": "yes", "shelter": null, "bench": null, "network": null }, "geometry": { "type": "Point", "coordinates": [ 105.8467302, 21.0079104 ] } }
+]
+}
