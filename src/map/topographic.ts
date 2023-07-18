@@ -1,11 +1,12 @@
 import maplibregl, { Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import data from '../hust/data.json';
+import { object3d, object3d1 } from './object3d';
 
 const roads = require('../hust/bd.geojson');
 const building = require('../hust/nha.geojson');
-const bd =  require('../image/map1.png');
-
+const bd =  require('../images/map.png');
+const name =  require('../images/name.png');
 
 function overMap(map: Map){
   map.on('load',(e)=>{
@@ -29,6 +30,26 @@ function overMap(map: Map){
         }
     });
 
+    map.addSource('name', {
+      'type': 'image',
+      'url': name,
+      'coordinates': [
+        [105.841220, 21.008358], 
+        [105.848130, 21.008358],
+        [ 105.848130,21.003014],
+        [ 105.841220,21.003014]
+      ]
+    });
+    map.addLayer({
+        id: 'name-layer',
+        'type': 'raster',
+        'source': 'name',
+        'paint': {
+          'raster-fade-duration': 0,
+          'raster-opacity':1
+        }
+    });
+  
     map.addSource("street", {
         type: "geojson",
         data: roads,
@@ -66,6 +87,13 @@ function overMap(map: Map){
         }
     });
 
+    const customLayers= object3d(map);
+    map.addLayer(customLayers);
+
+    const custom= object3d1(map);
+    map.addLayer(custom);
+
+
     map.addLayer({
       id: 'vin-name',
       type: 'symbol',
@@ -81,8 +109,8 @@ function overMap(map: Map){
         'text-anchor': 'bottom', // Đặt text-anchor là 'bottom' để đẩy văn bản lên đỉnh các tòa nhà
         'text-offset': ['interpolate', ['linear'], ['zoom'],
           15, ['literal', [0, 0]], // Độ cao offset ban đầu
-          16, ['literal', [0, 0]], // Độ cao offset khi zoom lên
-          18, ['literal', [0, 0]] // Độ cao offset khi zoom lên cao hơn
+          16, ['literal', [0, -5]], // Độ cao offset khi zoom lên
+          18, ['literal', [0, -10]] // Độ cao offset khi zoom lên cao hơn
         ],
         'text-font': ['DIN Offc Pro Bold', 'Arial Unicode MS Bold'] // Đặt kiểu chữ đậm
       },

@@ -99,20 +99,13 @@
     padding: 2% 3%;
     background-color: #fffef8;
 }
-.class__tabname{
-    height: calc(100% -60px);
-}
-#nav__name{
-    height: 20%;
-}
-#nav-tabContent{
-    height: 70%;
-}
+
 #nav-tab{
     border-bottom: none !important;
 }
-#nav-tab-name{
-    margin-bottom: 0px !important;
+#nav-tab-name .nav-item{
+    height: 150px;
+    width: 20%;
 }
 #nav-tab-name .nav-link{
     font-size: 30px;
@@ -120,11 +113,9 @@
     font-weight: 700;
     color: #bdbdbd;
     text-align: left;
-    height: calc(100% - 90px);
-    min-width: 250px ;
-    padding: 0px 0 50px !important;
-    line-height: 100%;
-    margin-top: 30px;
+    height: 150px;
+    min-width: 200px ;
+    padding: 0 20px;
 }
 #nav-tab-name .nav-link:hover {
     border-color: #fffef800 !important;
@@ -152,16 +143,9 @@
 }
 .ul__union li{
     display: flex;
-    cursor: pointer;
 }
-
 .ul__union li p{
-    margin-left: 10px;
-    line-height: 35px;
-}
-.ul__union li img{
-    width: 40px;
-    height: 50px;
+    line-height: 20px;
 }
 .ul__union span{
     background-color: white;
@@ -171,7 +155,7 @@
     margin-left: 5px;
     position: absolute;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 4px;
     line-height: 28px;
 }
 .tab-pane {

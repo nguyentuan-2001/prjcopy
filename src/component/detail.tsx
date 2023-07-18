@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Fade as Hamburger } from 'hamburger-react'
 import './component.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 const Detail = () => {
     const [isTransform, setIsTransform] = useState(false); 
+    const [isClose, setIsClose] = useState(true); 
 
     const click1 = () => {
         setIsTransform(false);
@@ -12,18 +14,25 @@ const Detail = () => {
     const click2 = () => {
         setIsTransform(true);
     };
-    
+    const closeDetail = () => {
+        setIsClose(true);
+    };
     
     return(
-        <div>
+        <div id='detail' style={{transform: isClose ? 'translateX(-200%)' : 'none'}}>
+            <div id='close__detail' onClick={closeDetail} >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </div>
             <div id='img_detail'>
-                <img id="img-address" src="" alt="" />
+                <img src="https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg" alt="" />
             </div>
 
             <p id='name__address'>Trường</p>
 
             <div id='button__save'>
-                <button type="button" className="btn btn-warning" id='navigate'>Chỉ đường tới đây</button>
+                <button type="button" className="btn btn-warning">Chỉ đường tới đây</button>
                 <button type="button" className="btn btn-light">Lưu</button>
             </div>
             <div id='all__information'>

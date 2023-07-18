@@ -29,7 +29,6 @@
       },
       "id": "984bac39-6a39-47b7-8112-36c1a09a4c53",
       "properties": {
-        "id":1,
         "atm": null,
         "name": "Khu \u0110\u1ea1i h\u1ecdc t\u1ea1i ch\u1ee9c",
         "shop": null,
@@ -731,6 +730,7 @@
       },
       "id": "dfc8e9a1-0696-49eb-a3f3-7d7e7467b967",
       "properties": {
+        "id":13,
         "atm": null,
         "name": "Nh\u00e0 C6",
         "shop": null,
@@ -802,6 +802,7 @@
       },
       "id": "e4848964-bd33-4794-b594-69752a1921f5",
       "properties": {
+        "id":9,
         "atm": null,
         "name": "Nh\u00e0 C9",
         "shop": null,
@@ -938,6 +939,7 @@
       },
       "id": "46d12cbf-9892-49a1-8d18-e1264d6acc42",
       "properties": {
+        "id":4,
         "atm": null,
         "name": "Nh\u00e0 C5",
         "shop": null,
@@ -1021,6 +1023,7 @@
       },
       "id": "4205a58f-b319-4e99-8870-a7ec46f46697",
       "properties": {
+        "id":10,
         "atm": null,
         "name": "Nh\u00e0 C1",
         "shop": null,
@@ -1575,6 +1578,7 @@
       },
       "id": "5842e991-b7ba-4ee9-8b0e-e25bd8708c0a",
       "properties": {
+        "id":7,
         "atm": null,
         "name": "HiTech-DHBKHN",
         "shop": null,
@@ -3067,6 +3071,7 @@
       },
       "id": "5cf3cf52-a8b3-4cae-99c1-1e5e43f0c35e",
       "properties": {
+        "id":6,
         "atm": null,
         "name": "ITIMS",
         "shop": null,
@@ -3545,6 +3550,7 @@
       },
       "id": "72edcf2e-fe36-407a-a582-d2b18b9bb119",
       "properties": {
+        "id":8,
         "atm": null,
         "name": "Nh\u00e0 C3b - Trung t\u00e2m Ngo\u1ea1i ng\u1eef",
         "shop": null,
