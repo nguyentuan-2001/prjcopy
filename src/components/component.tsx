@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Fade as Hamburger } from 'hamburger-react'
+import React, { useContext, useState } from 'react';
 import './component.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -7,12 +6,14 @@ import Tabname from './tabname';
 import Detail from './detail';
 import Search from './search';
 import Navigation from './navigation';
+import { MapContext } from '../contexts/tabnamecontext';
 
 const Navbar: React.FC = () => {
+    const { isList, setIsList } = useContext(MapContext)!;
     const [isMap, setIsMap] = useState(true); 
-    const [isList, setIsList] = useState(true); 
     const [isSearch, setIsSearch] = useState(true); 
-    const [isNavigation, setIsNavigation] = useState(true); 
+    const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
+    const [isClose, setIsClose] = useState(true); 
 
     const openList = () => {
         setIsList(false);
@@ -53,6 +54,14 @@ const Navbar: React.FC = () => {
         setIsList(true);
         setIsMap(true);
     };
+
+    const closeDetail = () => {
+        setIsClose(!isClose);
+    };
+    const detailStyle = {
+        transform: isClose ? 'translateX(-200%)' : 'none',
+    };
+
     return(
         <div className="all__map">
             <div className="left__panel">
@@ -87,10 +96,18 @@ const Navbar: React.FC = () => {
                     </svg>
                     <span>CLOSE</span>
                 </div>
-                <Tabname/>
+                <Tabname />
             </div>
-            
-            <Detail/>
+            <div id='detail' style={detailStyle}>
+                <div id='close__detail' onClick={closeDetail} >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                    </svg>
+                    <span>CLOSE</span>
+                </div>
+
+                <Detail/>
+            </div>
             <div id='search' style={{transform: isSearch ? 'translateX(-200%)' : 'none'}}>
                 <div id='close__detail' onClick={closeSearch} >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
