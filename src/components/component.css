@@ -559,7 +559,12 @@
 }
 .name_popup{
     margin: 0px !important;
+    width: 100%;
 }
 .maplibregl-popup-content{
     border-radius: 30px;
+}
+.maplibregl-popup-content {
+    padding: 5px 10px !important;
+    text-align: center;
 }

@@ -94,19 +94,19 @@ function overMap(map: Map){
     //   }
     // });
 
-    let layerCount = 1;
-    for (const feature of data.features) { 
-      const coordinate: any = feature.geometry.coordinates;
-      const name = feature.properties.name;
-      const height = feature.properties.height;
-      const layerName = `custom${layerCount++}`;
-      // Remove any previously added layer with the same name
-      if (map.getLayer(layerName)) {
-        map.removeLayer(layerName);
-      }
-      const customLayer = object3d(map, coordinate,name, layerName, height);
-      map.addLayer(customLayer);
-    }
+    // let layerCount = 1;
+    // for (const feature of data.features) { 
+    //   const coordinate: any = feature.geometry.coordinates;
+    //   const name = feature.properties.name;
+    //   const height = feature.properties.height;
+    //   const layerName = `custom${layerCount++}`;
+    //   // Remove any previously added layer with the same name
+    //   if (map.getLayer(layerName)) {
+    //     map.removeLayer(layerName);
+    //   }
+    //   const customLayer = object3d(map, coordinate,name, layerName, height);
+    //   map.addLayer(customLayer);
+    // }
   });
 }
 

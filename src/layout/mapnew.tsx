@@ -192,6 +192,31 @@ const MapNew: React.FC<PropsMap> = ({
                 updateSuggestions(suggestions, map, marker);
                 });
             }
+
+            map.on('zoom', function() {
+            const currentZoom = map.getZoom();
+            const elms = document.querySelectorAll(".maplibregl-popup-content") as NodeListOf<HTMLElement>;
+            const popups = document.querySelectorAll(".maplibregl-popup-anchor-bottom") as NodeListOf<HTMLElement>;
+            
+            popups.forEach((popup) => {
+              if (currentZoom <15.5) {
+                popup.style.opacity = '0';
+              } else{
+                popup.style.opacity = '1';
+              }
+            });
+            elms.forEach((elm) => {
+              if (currentZoom < 16) {
+                elm.style.fontSize = '3px';
+              }else if (currentZoom > 16 && currentZoom < 17) {
+                elm.style.fontSize = '6px';
+              }else if (currentZoom > 17 && currentZoom<18) {
+                elm.style.fontSize = '12px';
+              }else if (currentZoom > 18) {
+                elm.style.fontSize = '15px';
+              }
+            });
+          });
         });
 
             
@@ -215,13 +240,14 @@ const MapNew: React.FC<PropsMap> = ({
             });
     
           const container = document.createElement("div");
-            // Tạo phần tử mô tả và thiết lập nội dung
+;
           const name = feature.properties.name;
           const nameElement = document.createElement("p");
           nameElement.className= "name_popup"
           nameElement.textContent = name;
+
           container.appendChild(nameElement);
-    
+          
           popup.setLngLat(feature.geometry.coordinates as maplibregl.LngLatLike)
             .setDOMContent(container)
             .addTo(map);
