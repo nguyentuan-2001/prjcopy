@@ -30,8 +30,6 @@ const TabName = () => {
         return bounds;
     }
 
-    
-  
     const [isKhoa, setIsKhoa] = useState(true); 
     const [isVien, setIsVien] = useState(false); 
     const [isPhong, setIsPhong] = useState(false); 
@@ -73,7 +71,24 @@ const TabName = () => {
         setIsThuVien(true);
         setIsCuaHang(false);
     };
+
+    //const [isListItems, setIsListItems] = useState<any[ ]>([]);
+
     
+
+    // setIsListItems(options);
+    // const [selectedItem, setSelectedItem] = useState(null);
+    // const clickLi = (e: any) => {
+    //     setSelectedItem(e);
+    // };
+
+    // useEffect(() => {
+    //     console.log(selectedItem);
+    // }, [selectedItem]);
+    
+    
+    
+
   return (
     <div id='show__name' style={{transform: isList ? 'translateX(-200%)' : 'none'}}>
         
@@ -84,38 +99,47 @@ const TabName = () => {
             <span>CLOSE</span>
         </div>
         
-        <div className='class__tabname'>
-            <div id="nav-tab">
-                <div className="table-responsive">
-                    <table className="table">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <button style={{ color: isKhoa ? 'black' : '#9e9c9c', borderBottom: isKhoa ? '2px solid #eac870' : 'none'  }} onClick={khoa} className="nav-link" id="nav-khoa-tab" type="button" role="tab" >Khoa - Viện đào tạo</button>
-                        </td>
-                        <td>
-                            <button style={{ color: isVien ? 'black' : '#9e9c9c', borderBottom: isVien ? '2px solid #eac870' : 'none'  }} onClick={vien} className="nav-link" id="nav-vien-tab" type="button" >Viện - Trung tâm nghiên cứu</button>
-                        </td>
-                        <td>
-                            <button style={{ color: isPhong ? 'black' : '#9e9c9c', borderBottom: isPhong ? '2px solid #eac870' : 'none'  }} onClick={phong}  className="nav-link" id="nav-phong-tab"  type="button">Phòng - Ban -  Trung tâm</button>
-                        </td>
-                        <td>
-                            <button style={{ color: isThuVien ? 'black' : '#9e9c9c', borderBottom: isThuVien ? '2px solid #eac870' : 'none'  }} onClick={thuvien}  className="nav-link" id="nav-thuvien-tab" type="button" >Thư viện - Phòng học</button>
-                        </td>
-                        <td>
-                            <button style={{ color: isCuaHang ? 'black' : '#9e9c9c', borderBottom: isCuaHang ? '2px solid #eac870' : 'none'  }} onClick={cuahang}  className="nav-link" id="nav-cuahang-tab" type="button">Cửa hàng - Quán xá</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
+
+        <div className="table-responsive" id="nav-tab">
+            <table className="table">
+            <tbody>
+            <tr>
+                <td>
+                    <button style={{ color: isKhoa ? 'black' : '#9e9c9c', borderBottom: isKhoa ? '2px solid #eac870' : 'none'  }} onClick={khoa} className="nav-link" id="nav-khoa-tab" type="button" role="tab" >Khoa - Viện đào tạo</button>
+                </td>
+                <td>
+                    <button style={{ color: isVien ? 'black' : '#9e9c9c', borderBottom: isVien ? '2px solid #eac870' : 'none'  }} onClick={vien} className="nav-link" id="nav-vien-tab" type="button" >Viện - Trung tâm nghiên cứu</button>
+                </td>
+                <td>
+                    <button style={{ color: isPhong ? 'black' : '#9e9c9c', borderBottom: isPhong ? '2px solid #eac870' : 'none'  }} onClick={phong}  className="nav-link" id="nav-phong-tab"  type="button">Phòng - Ban -  Trung tâm</button>
+                </td>
+                <td>
+                    <button style={{ color: isThuVien ? 'black' : '#9e9c9c', borderBottom: isThuVien ? '2px solid #eac870' : 'none'  }} onClick={thuvien}  className="nav-link" id="nav-thuvien-tab" type="button" >Thư viện - Phòng học</button>
+                </td>
+                <td>
+                    <button style={{ color: isCuaHang ? 'black' : '#9e9c9c', borderBottom: isCuaHang ? '2px solid #eac870' : 'none'  }} onClick={cuahang}  className="nav-link" id="nav-cuahang-tab" type="button">Cửa hàng - Quán xá</button>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
 
             {/* <MapNew showAddress={showAddress}/> */}
-            <div className="" id="nav-tabContent">
-                <ul id="ul__union"></ul>
-            </div>
+        <div className="" id="nav-tabContent">
+            <ul id="ul__union"></ul>
+
+            {/* <ul id="ul__union">
+                {isListItems.map((e, index) => (
+                <li onClick={() => clickLi({ ...e})} key={index}>
+                    <span>{index + 1}</span>
+                    <img src="../images/union.png" alt="" />
+                    <p>{e}</p>
+                </li>
+                ))}
+            </ul> */}
+
         </div>
+
     </div>
 
   )

@@ -14,12 +14,14 @@ const Header = () => {
     const { isMap, setIsMap } = useContext(MapContext)!;
     const { isSearch, setIsSearch } = useContext(MapContext)!;
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
+    const {isClose, setIsClose} = useContext(MapContext)!; 
 
     const openList = () => {
         setIsList(false);
         setIsNavigation(true);
         setIsSearch(true);
         setIsMap(false);
+        setIsClose(true);
     };
 
     const openNavigation = () => {
@@ -27,6 +29,7 @@ const Header = () => {
         setIsList(true);
         setIsSearch(true);
         setIsMap(false);
+        setIsClose(true);
     };
     
     const openSearch = () => {
@@ -34,6 +37,7 @@ const Header = () => {
         setIsNavigation(true);
         setIsList(true);
         setIsMap(false);
+        setIsClose(true);
     };
 
     const openMap = () => {
@@ -41,15 +45,17 @@ const Header = () => {
         setIsNavigation(true);
         setIsList(true);
         setIsMap(true);
+        setIsClose(true);
     };
-    const [isOpen, setOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(true)
+
   return (
     <div className="header_all">
         <div id="icon__open">
-            <Hamburger toggled={isOpen} toggle={setOpen}/>
+            <Hamburger toggled={isOpen} toggle={setIsOpen} />
         </div>
         
-        <div className="left__panel" style={{display: isOpen ? 'block' : 'none'}}>
+        <div className="left__panel" style={{transform: isOpen ? 'none' : 'translateX(-200%)'}}>
             <div id='logo__digiuni'>
                 <img src="./images/digiuni.png" alt="" />
             </div>

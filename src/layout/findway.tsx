@@ -18,14 +18,29 @@ library.add(fas);
 
 
 const FindWay = () => {
-
     const { isMap, setIsMap } = useContext(MapContext)!;
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
+    const [isBlockNavigation, setIsBlockNavigation] = useState(false);
+
+    const [isDiBoLength, setIsDiBoLength] = useState<string | undefined>();
+    const [isDiBoTime, setIsDiBoTime] = useState<string | undefined>();
+    const [isXeDapLength, setIsXeDapLength] = useState<string | undefined>();
+    const [isXeDapTime, setIsXeDapTime] = useState<string | undefined>();
 
     const closeNavigation = () => {
         setIsNavigation(true);
         setIsMap(true);
+
+
     };
+    // function removeLayer(map: Map){
+    //     map.getLayer('path-layer');
+    //     map.removeLayer('path-layer');
+    //     map.getLayer('path-layer1');
+    //     map.removeLayer('path-layer1');
+    //     map.getSource('path');
+    //     map.removeSource('path');
+    // }
 
     function updateOptions(options: string[], selectElement: HTMLSelectElement) {
         // delete list
@@ -126,6 +141,7 @@ const FindWay = () => {
                 }
             });
     
+
     
             if (nearestPoint && nearestPoint1){
                 const pathFinder = new PathFinder(geojson);
@@ -135,28 +151,23 @@ const FindWay = () => {
     
                 const calculatedDistance = distance(startp, finish, { units: 'kilometers' });
                 const calculatedDistanceInMeters = calculatedDistance * 1000;
-                
-                const showIfLength = document.getElementById('navigation__child') as HTMLElement;
-                showIfLength.style.display= 'block';
-        
-                const element = document.getElementById("length_street") as HTMLElement;
-                const datasearch = `${calculatedDistanceInMeters.toFixed(2)} m`;
-                if (element) {
-                    element.innerText = datasearch;
-                }
-    
-                const averageSpeed = 5; // Tốc độ di chuyển trung bình (kilomet/giờ)
-                const travelTimeInHours = calculatedDistance / averageSpeed; // Thời gian di chuyển (giờ)
-                // Chuyển đổi thời gian di chuyển sang phút và giây
+                 
+                setIsBlockNavigation(true);
+
+                setIsDiBoLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
+                const travelTimeInHours = calculatedDistance / 5; // Thời gian di chuyển (giờ)
                 const travelTimeInMinutes = travelTimeInHours * 60;
+                setIsDiBoTime(`${travelTimeInMinutes.toFixed(2)} phút`);
+
+                setIsXeDapLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
+                const bicycleTimeInHours = calculatedDistance / 20; // Thời gian di chuyển (giờ)
+                const bicycleTimeInMinutes = bicycleTimeInHours * 60;
+                setIsXeDapTime(`${bicycleTimeInMinutes.toFixed(2)} phút`);
+
+
+                
     
-                const elements = document.getElementById("time_street") as HTMLElement;
-                const datasearchs = `${travelTimeInMinutes.toFixed(2)} phút`;
-    
-                if (elements) {
-                    elements.innerText = datasearchs;
-                }
-    
+
                 if (path) {
                     const pathSource = map.getSource('path') as any;
                     const coordinates = path.path;
@@ -319,7 +330,7 @@ const FindWay = () => {
                         <p></p>
                     </div>
                     <div>
-                        <FontAwesomeIcon icon="search" id='icon__search1'/>
+                        <FontAwesomeIcon icon="search" id='icon__search1' />
                         <FontAwesomeIcon icon="search" id='icon__search2'/>
                     </div>
                     <div id='repeart'>
@@ -328,7 +339,7 @@ const FindWay = () => {
                 </div>
             </div>
 
-            <div id='navigation__child'>
+            <div id='navigation__child' style={{display: isBlockNavigation ? 'block' : 'none'}}>
                 <ul className="nav nav-pills" id="ul_navigation" role="tablist">
                     <li className="nav-item" role="presentation">
                         <button className="nav-link active" id="pills-dibo" data-bs-toggle="pill" data-bs-target="#dibo" type="button" role="tab" aria-controls="dibo" aria-selected="true">
@@ -357,24 +368,37 @@ const FindWay = () => {
                     <div className="tab-pane fade show active" id="dibo" role="tabpanel" aria-labelledby="pills-dibo">
                         <div className='if-length'>
                             <div className="row">
-                                <div className="col-lg-2">
+                                <div className="col-2">
                                     <div id='img_dibo'><img src="../images/dibo.png" alt="" /></div>
                                 </div>
-                                <div className="col-lg-6">
+                                <div className="col-4">
                                     <span>Đi thẳng</span>
                                 </div>
-                                <div className="col-lg-4">
+                                <div className="col-6">
                                     <div id='length'>
-                                        <p id='length_street'></p>
-                                        <p id='time_street'></p>
+                                        <p id='length_dibo'>{isDiBoLength}</p>
+                                        <p id='time_dibo'>{isDiBoTime}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="tab-pane fade" id="xedap" role="tabpanel" aria-labelledby="pills-xedap">
-                        <div id='all_img'>
-                        <img src="https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-346.jpeg" alt="" />
+                        <div className='if-length'>
+                            <div className="row">
+                                <div className="col-2">
+                                    <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
+                                </div>
+                                <div className="col-4">
+                                    <span>Đi thẳng</span>
+                                </div>
+                                <div className="col-6">
+                                    <div id='length'>
+                                        <p id='length_xedap'>{isXeDapLength}</p>
+                                        <p id='time_xedap'>{isXeDapTime}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="tab-pane fade" id="xemay" role="tabpanel" aria-labelledby="pills-xemay">

@@ -85,6 +85,7 @@ const MapNew: React.FC<PropsMap> = ({
       
             currentMarker = clickedMarker.marker;
             setIsClose(false);
+            
             setIiClickImage(clickedMarker.feature.properties.name)
             showLocationDetail(clickedMarker.feature);
             const lngLat = clickedMarker.feature.geometry.coordinates;
@@ -98,7 +99,8 @@ const MapNew: React.FC<PropsMap> = ({
         return marker;
     }
 
-    function showAddress(map: Map, marker: Marker) {
+    
+    function showAddress(map: Map, marker: Marker ,array = []) {
       const options = data.features.map(feature => feature.properties.name);
       const myElement = document.getElementById("ul__union") as HTMLUListElement;
       if (myElement) {
@@ -106,17 +108,17 @@ const MapNew: React.FC<PropsMap> = ({
         while (myElement.firstChild) {
           myElement.firstChild.remove();
         }
-    
         // Tạo danh sách các phần tử <li>
         const listItems = options.map((name, index) => {
           const listItem = document.createElement("li");
           listItem.textContent = name;
           listItem.style.display = "none";
           listItem.innerHTML = 
-          ` <span>${index + 1}</span>
+          ` 
             <img src="../images/union.png" alt="" />
             <p>${name}</p>
           `;
+          // <span>${index + 1}</span>
           return listItem;
         });
     
@@ -137,25 +139,25 @@ const MapNew: React.FC<PropsMap> = ({
         };
         handleButtonClick("hall");
         document.getElementById("nav-khoa-tab")?.addEventListener("click", () => {
-          handleButtonClick("hall");
+          handleButtonClick(array[0]);
         });
     
         document.getElementById("nav-vien-tab")?.addEventListener("click", () => {
-          handleButtonClick("classroom");
+          handleButtonClick(array[1]);
         });
     
         document.getElementById("nav-phong-tab")?.addEventListener("click", () => {
-          handleButtonClick("phong");
+          handleButtonClick(array[2]);
         });
         document.getElementById("nav-thuvien-tab")?.addEventListener("click", () => {
-          handleButtonClick("library");
+          handleButtonClick(array[3]);
         });
     
         document.getElementById("nav-cuahang-tab")?.addEventListener("click", () => {
-          handleButtonClick("shop");
+          handleButtonClick(array[4]);
         });
     
-        // Xử lý sự kiện click cho từng phần tử
+      //   // Xử lý sự kiện click cho từng phần tử
         listItems.forEach((item, index) => {
           const datas = data.features[index];
           const coordinates: maplibregl.LngLatLike = datas.geometry.coordinates as maplibregl.LngLatLike;
@@ -173,7 +175,6 @@ const MapNew: React.FC<PropsMap> = ({
         });
       }
   }
-    
 
     useEffect(() => {
         const map = createMap();
@@ -199,7 +200,7 @@ const MapNew: React.FC<PropsMap> = ({
             const popups = document.querySelectorAll(".maplibregl-popup-anchor-bottom") as NodeListOf<HTMLElement>;
             
             popups.forEach((popup) => {
-              if (currentZoom <15.5) {
+              if (currentZoom <15.8) {
                 popup.style.opacity = '0';
               } else{
                 popup.style.opacity = '1';
@@ -229,10 +230,14 @@ const MapNew: React.FC<PropsMap> = ({
         if(findway){
             findway(map);
         }
+        const array = [ 'hall', 'classroom', 'quan', 'library' ] as any;
         // if(showAddress){
-        //   showAddress(map,marker);
+        //   showAddress(map,marker,array);
         // }
-        showAddress(map,marker);
+
+
+        showAddress(map,marker,array); 
+
         for (const feature of data.features){
           const popup = new maplibregl.Popup({
             closeButton: false,

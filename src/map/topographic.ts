@@ -5,7 +5,7 @@ import { object3d } from './object3d';
 
 const roads = require('../hust/bd.geojson');
 const building = require('../hust/nha.geojson');
-const bd =  require('../image/map1.png');
+const bd =  require('../image/map2.png');
 
 
 function overMap(map: Map){

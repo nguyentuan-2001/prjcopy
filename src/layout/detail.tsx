@@ -22,8 +22,6 @@ const Detail = () => {
 
     const {isClickImage,setIiClickImage} = useContext(MapContext)!; 
     const chiduong = () => {
-        console.log(isClickImage);
-        
         const startStreetSelect = document.getElementById("start-street") as any;
         startStreetSelect.value = isClickImage;
         setIsClose(true);
