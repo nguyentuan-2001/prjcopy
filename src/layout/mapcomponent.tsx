@@ -1,7 +1,6 @@
 import Search from "./search"
 import FindWay from "./findway"
 import Header from "./header"
-import MapNew from "./mapnew"
 import TabName from "./tabname"
 import Detail from "./detail"
 

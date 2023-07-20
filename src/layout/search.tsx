@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import maplibregl, { LngLatLike, Map } from "maplibre-gl";
-import '../components/component.css'
+import '../css/component.css'
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -10,11 +9,8 @@ import MapNew from "./mapnew";
 library.add(fas);
 
 const Search = () => {
-    const { isList, setIsList } = useContext(MapContext)!;
     const { isMap, setIsMap } = useContext(MapContext)!;
     const { isSearch, setIsSearch } = useContext(MapContext)!;
-    const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
-    const [isClose, setIsClose] = useState(true); 
 
     const closeSearch = () => {
         setIsSearch(true);

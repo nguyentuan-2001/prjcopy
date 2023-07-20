@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import maplibregl, { LngLatLike, Map } from "maplibre-gl";
-import '../components/component.css'
+import '../css/component.css'
 import 'maplibre-gl/dist/maplibre-gl.css';
 import PathFinder from "geojson-path-finder";
 import * as geolib from 'geolib';
@@ -26,6 +26,11 @@ const FindWay = () => {
     const [isDiBoTime, setIsDiBoTime] = useState<string | undefined>();
     const [isXeDapLength, setIsXeDapLength] = useState<string | undefined>();
     const [isXeDapTime, setIsXeDapTime] = useState<string | undefined>();
+    const [isXeMayLength, setIsXeMayLength] = useState<string | undefined>();
+    const [isXeMayTime, setIsXeMayTime] = useState<string | undefined>();
+    const [isOToLength, setIsOToLength] = useState<string | undefined>();
+    const [isOToTime, setIsOToTime] = useState<string | undefined>();
+
 
     const closeNavigation = () => {
         setIsNavigation(true);
@@ -155,18 +160,24 @@ const FindWay = () => {
                 setIsBlockNavigation(true);
 
                 setIsDiBoLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
-                const travelTimeInHours = calculatedDistance / 5; // Thời gian di chuyển (giờ)
+                const travelTimeInHours = calculatedDistance / 5; 
                 const travelTimeInMinutes = travelTimeInHours * 60;
                 setIsDiBoTime(`${travelTimeInMinutes.toFixed(2)} phút`);
 
                 setIsXeDapLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
-                const bicycleTimeInHours = calculatedDistance / 20; // Thời gian di chuyển (giờ)
+                const bicycleTimeInHours = calculatedDistance / 20;
                 const bicycleTimeInMinutes = bicycleTimeInHours * 60;
                 setIsXeDapTime(`${bicycleTimeInMinutes.toFixed(2)} phút`);
 
+                setIsXeMayLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
+                const motorbikeTimeInHours = calculatedDistance / 40;
+                const motorbikeTimeInMinutes = motorbikeTimeInHours * 60;
+                setIsXeMayTime(`${motorbikeTimeInMinutes.toFixed(2)} phút`);
 
-                
-    
+                setIsOToLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
+                const carTimeInHours = calculatedDistance / 60;
+                const carTimeInMinutes = carTimeInHours * 60;
+                setIsOToTime(`${carTimeInMinutes.toFixed(2)} phút`);
 
                 if (path) {
                     const pathSource = map.getSource('path') as any;
@@ -196,7 +207,7 @@ const FindWay = () => {
                             type: 'line',
                             source: 'path',
                             paint: {
-                            'line-color': '#6527BE',
+                            'line-color': '#2B2730',
                             'line-opacity': 1,
                             'line-width': 4,
                             },
@@ -206,7 +217,7 @@ const FindWay = () => {
                             type: 'line',
                             source: 'path',
                             paint: {
-                            'line-color': '#9681EB',
+                            'line-color': '#9BABB8',
                             'line-opacity': 0.5,
                             'line-width': 12,
                             },
@@ -294,7 +305,23 @@ const FindWay = () => {
             console.error('Lỗi khi tìm đường:', error);
         });
     }
-    
+
+    const [startStreet, setStartStreet] = useState<string>('');
+    const [endStreet, setEndStreet] = useState<string>('');
+  
+    const handleChangeStartStreet = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setStartStreet(event.target.value);
+    };
+  
+    const handleChangeEndStreet = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setEndStreet(event.target.value);
+    };
+
+    const handleSwapOptions = () => {
+      const temp = startStreet;
+      setStartStreet(endStreet);
+      setEndStreet(temp);
+    };
   
   return (
         <div id='navigation' style={{transform: isNavigation ? 'translateX(-200%)' : 'none'}}>
@@ -310,7 +337,7 @@ const FindWay = () => {
                 <div id='select__address'>
                     <div className='icon__select1'>
                         <span><FontAwesomeIcon icon="crosshairs" /></span>           
-                        <select className="form-control form-control" id="start-street">
+                        <select className="form-control form-control" id="start-street" value={startStreet} onChange={handleChangeStartStreet}>
                             <option value="" disabled>
                                 Chọn điểm bắt đầu
                             </option>
@@ -318,7 +345,7 @@ const FindWay = () => {
                     </div>
                     <div className='icon__select2'>
                         <span><FontAwesomeIcon icon="map-marker-alt" /></span>  
-                        <select className="form-control input-solid" id="end-street">
+                        <select className="form-control input-solid" id="end-street" value={endStreet} onChange={handleChangeEndStreet}>
                             <option value="" disabled>
                                 Chọn điểm cần đến
                             </option>
@@ -334,7 +361,7 @@ const FindWay = () => {
                         <FontAwesomeIcon icon="search" id='icon__search2'/>
                     </div>
                     <div id='repeart'>
-                        <img src="../images/repeart.png" alt="" />
+                        <img src="../images/repeart.png" alt="" onClick={handleSwapOptions}/>
                     </div>
                 </div>
             </div>
@@ -345,21 +372,25 @@ const FindWay = () => {
                         <button className="nav-link active" id="pills-dibo" data-bs-toggle="pill" data-bs-target="#dibo" type="button" role="tab" aria-controls="dibo" aria-selected="true">
                             <img src="../images/dibo.png" alt="" />
                         </button>
+                        <p>{isDiBoTime}</p>
                     </li>
                     <li className="nav-item" role="presentation">
                         <button className="nav-link" id="pills-xedap" data-bs-toggle="pill" data-bs-target="#xedap" type="button" role="tab" aria-controls="xedap" aria-selected="false">
                             <img src="../images/xedap.png" alt="" />
                         </button>
+                        <p>{isXeDapTime}</p>
                     </li>
                     <li className="nav-item" role="presentation">
                         <button className="nav-link" id="pills-xemay" data-bs-toggle="pill" data-bs-target="#xemay" type="button" role="tab" aria-controls="xemay" aria-selected="false">
                             <img src="../images/xemay.png" alt="" />
                         </button>
+                        <p>{isXeMayTime}</p>
                     </li>
                     <li className="nav-item" role="presentation">
                         <button className="nav-link" id="pills-oto" data-bs-toggle="pill" data-bs-target="#oto" type="button" role="tab" aria-controls="oto" aria-selected="false">
                             <img src="../images/oto.png" alt="" />
                         </button>
+                        <p>{isOToTime}</p>
                     </li>
                 </ul>
                     <hr />
@@ -376,7 +407,7 @@ const FindWay = () => {
                                 </div>
                                 <div className="col-6">
                                     <div id='length'>
-                                        <p id='length_dibo'>{isDiBoLength}</p>
+                                        <b id='length_dibo'>{isDiBoLength}</b>
                                         <p id='time_dibo'>{isDiBoTime}</p>
                                     </div>
                                 </div>
@@ -394,7 +425,7 @@ const FindWay = () => {
                                 </div>
                                 <div className="col-6">
                                     <div id='length'>
-                                        <p id='length_xedap'>{isXeDapLength}</p>
+                                        <b id='length_xedap'>{isXeDapLength}</b>
                                         <p id='time_xedap'>{isXeDapTime}</p>
                                     </div>
                                 </div>
@@ -402,10 +433,40 @@ const FindWay = () => {
                         </div>
                     </div>
                     <div className="tab-pane fade" id="xemay" role="tabpanel" aria-labelledby="pills-xemay">
-                        <p>sdf213</p>
+                        <div className='if-length'>
+                            <div className="row">
+                                <div className="col-2">
+                                    <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
+                                </div>
+                                <div className="col-4">
+                                    <span>Đi thẳng</span>
+                                </div>
+                                <div className="col-6">
+                                    <div id='length'>
+                                        <b id='length_xedap'>{isXeMayLength}</b>
+                                        <p id='time_xedap'>{isXeMayTime}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="tab-pane fade" id="oto" role="tabpanel" aria-labelledby="pills-oto">
-                        <p>2313251</p>
+                        <div className='if-length'>
+                            <div className="row">
+                                <div className="col-2">
+                                    <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
+                                </div>
+                                <div className="col-4">
+                                    <span>Đi thẳng</span>
+                                </div>
+                                <div className="col-6">
+                                    <div id='length'>
+                                        <b id='length_xedap'>{isOToLength}</b>
+                                        <p id='time_xedap'>{isOToTime}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

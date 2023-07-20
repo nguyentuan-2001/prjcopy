@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import maplibregl, { LngLatLike, Map } from "maplibre-gl";
-import '../components/component.css'
+import '../css/component.css'
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Fade as Hamburger } from 'hamburger-react'
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -64,7 +63,7 @@ const Header = () => {
             <div id='list_a'>
                 <a href='#' onClick={openMap} style={{ color: isMap ? 'black' : '#9e9c9c' }}>BẢN ĐỒ</a>
                 <br /><br />
-                <a href='#' onClick={openList} style={{ color: isList ? '#9e9c9c' : 'black' }}>DANH SÁCH</a>
+                <a href='#' onClick={openList} style={{ color: isList ? '#9e9c9c' : 'black' }}>KHU VỰC</a>
                 <br /><br />
                 <a href='#' onClick={openSearch} style={{ color: isSearch ? '#9e9c9c' : 'black' }}>TÌM KIẾM</a>
                 <br /><br />

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import maplibregl, { LngLatLike, Map, Marker } from "maplibre-gl";
-import '../components/component.css'
+import '../css/component.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -8,8 +7,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MapContext } from "../contexts/tabnamecontext";
-import MapNew from "./mapnew";
-import data from "../hust/data.json";
 library.add(fas);
 
 
@@ -17,18 +14,10 @@ const TabName = () => {
     const { isList, setIsList } = useContext(MapContext)!;
     const { isMap, setIsMap } = useContext(MapContext)!;
 
-
-
     const closeTabName = () => {
         setIsList(true);
         setIsMap(true);
     };
-
-    function getBounds(coordinates: maplibregl.LngLatLike) {
-        const bounds = new maplibregl.LngLatBounds();
-        bounds.extend(coordinates);
-        return bounds;
-    }
 
     const [isKhoa, setIsKhoa] = useState(true); 
     const [isVien, setIsVien] = useState(false); 
@@ -72,22 +61,6 @@ const TabName = () => {
         setIsCuaHang(false);
     };
 
-    //const [isListItems, setIsListItems] = useState<any[ ]>([]);
-
-    
-
-    // setIsListItems(options);
-    // const [selectedItem, setSelectedItem] = useState(null);
-    // const clickLi = (e: any) => {
-    //     setSelectedItem(e);
-    // };
-
-    // useEffect(() => {
-    //     console.log(selectedItem);
-    // }, [selectedItem]);
-    
-    
-    
 
   return (
     <div id='show__name' style={{transform: isList ? 'translateX(-200%)' : 'none'}}>
@@ -124,20 +97,8 @@ const TabName = () => {
             </table>
         </div>
 
-            {/* <MapNew showAddress={showAddress}/> */}
         <div className="" id="nav-tabContent">
             <ul id="ul__union"></ul>
-
-            {/* <ul id="ul__union">
-                {isListItems.map((e, index) => (
-                <li onClick={() => clickLi({ ...e})} key={index}>
-                    <span>{index + 1}</span>
-                    <img src="../images/union.png" alt="" />
-                    <p>{e}</p>
-                </li>
-                ))}
-            </ul> */}
-
         </div>
 
     </div>

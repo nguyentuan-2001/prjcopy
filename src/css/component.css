@@ -57,6 +57,7 @@
    color: #bdbdbd;
    font-weight: bold;
    text-decoration: none;
+   font-family: 'Times New Roman', Times, serif;
 }
 
 
@@ -95,7 +96,7 @@
     position: absolute;
     margin-left: 15%;
     height: 100%;
-    transition: 0.8s ease;
+    transition: 0.6s ease;
     z-index: 1;
     padding: 2% 3%;
     background-color: #fffef8;
@@ -188,7 +189,7 @@
     margin-left: 15%;
     height: 100%;
     position: absolute;
-    transition: 0.8s ease;
+    transition: 0.6s ease;
     max-height: 100vh;
     overflow: auto;
 }
@@ -225,8 +226,8 @@
 }
 #name__address{
     margin: 10px 20px 10px;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: 700;
     font-family: 'Times New Roman', Times, serif;
     width: calc(100% -20px);
 }
@@ -250,6 +251,8 @@
 }
 .nav-item button{
     color: black;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
 }
 .nav-item button:hover{
     color: black;
@@ -311,7 +314,7 @@
     margin-left: 15%;
     height: 100%;
     position: absolute;
-    transition: 0.8s ease;
+    transition: 0.6s ease;
     max-height: 100vh;
     overflow: auto;
 }
@@ -360,7 +363,7 @@
     margin-left: 15%;
     height: 100%;
     position: absolute;
-    transition: 0.8s ease;
+    transition: 0.6s ease;
     max-height: 100vh;
     overflow: auto;
 }
@@ -369,7 +372,7 @@
     width: 90%;
 }
 #ul_navigation{
-    padding:  0 10% 10%;
+    padding:  0 0% 10%;
 }
 #ul_navigation li{
     width: 25%;
@@ -390,7 +393,7 @@
 }
 #select__address{
     width: 90%;
-    padding: 5% 10% 0;
+    padding: 5% 5% 0;
     position: relative;
 }
 #select__address select{
@@ -541,17 +544,16 @@
     margin: 0px !important;
     width: 100%;
 }
-.maplibregl-popup-content{
-    border-radius: 30px;
-}
 .maplibregl-popup-content {
-    padding: 5px 10px !important;
     text-align: center;
+    border-radius: 30px;
+    cursor: pointer;
 }
+
 @media  only screen and  (max-width: 280px){
     .header_all{
         width: 50%;
-        transition: 0.8s ease;
+        transition: 0.6s ease;
     }
     #icon__open{
         display: block;

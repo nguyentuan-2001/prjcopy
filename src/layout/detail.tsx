@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import MapNew from './mapnew';
 import { MapContext } from '../contexts/tabnamecontext';
 
 const Detail = () => {
