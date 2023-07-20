@@ -35,8 +35,7 @@ const FindWay = () => {
     const closeNavigation = () => {
         setIsNavigation(true);
         setIsMap(true);
-
-
+        setIsBlockNavigation(false);
     };
     // function removeLayer(map: Map){
     //     map.getLayer('path-layer');
@@ -305,23 +304,6 @@ const FindWay = () => {
             console.error('Lỗi khi tìm đường:', error);
         });
     }
-
-    const [startStreet, setStartStreet] = useState<string>('');
-    const [endStreet, setEndStreet] = useState<string>('');
-  
-    const handleChangeStartStreet = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setStartStreet(event.target.value);
-    };
-  
-    const handleChangeEndStreet = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setEndStreet(event.target.value);
-    };
-
-    const handleSwapOptions = () => {
-      const temp = startStreet;
-      setStartStreet(endStreet);
-      setEndStreet(temp);
-    };
   
   return (
         <div id='navigation' style={{transform: isNavigation ? 'translateX(-200%)' : 'none'}}>
@@ -337,7 +319,7 @@ const FindWay = () => {
                 <div id='select__address'>
                     <div className='icon__select1'>
                         <span><FontAwesomeIcon icon="crosshairs" /></span>           
-                        <select className="form-control form-control" id="start-street" value={startStreet} onChange={handleChangeStartStreet}>
+                        <select className="form-control form-control" id="start-street"  >
                             <option value="" disabled>
                                 Chọn điểm bắt đầu
                             </option>
@@ -345,7 +327,7 @@ const FindWay = () => {
                     </div>
                     <div className='icon__select2'>
                         <span><FontAwesomeIcon icon="map-marker-alt" /></span>  
-                        <select className="form-control input-solid" id="end-street" value={endStreet} onChange={handleChangeEndStreet}>
+                        <select className="form-control input-solid" id="end-street" >
                             <option value="" disabled>
                                 Chọn điểm cần đến
                             </option>
@@ -361,7 +343,7 @@ const FindWay = () => {
                         <FontAwesomeIcon icon="search" id='icon__search2'/>
                     </div>
                     <div id='repeart'>
-                        <img src="../images/repeart.png" alt="" onClick={handleSwapOptions}/>
+                        <img src="../images/repeart.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -438,10 +420,10 @@ const FindWay = () => {
                                 <div className="col-2">
                                     <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-5">
                                     <span>Đi thẳng</span>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-5">
                                     <div id='length'>
                                         <b id='length_xedap'>{isXeMayLength}</b>
                                         <p id='time_xedap'>{isXeMayTime}</p>
@@ -456,10 +438,10 @@ const FindWay = () => {
                                 <div className="col-2">
                                     <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-5">
                                     <span>Đi thẳng</span>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-5">
                                     <div id='length'>
                                         <b id='length_xedap'>{isOToLength}</b>
                                         <p id='time_xedap'>{isOToTime}</p>

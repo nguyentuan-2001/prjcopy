@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
 *{
     margin: 0px;
     padding: 0px;
@@ -37,7 +38,7 @@
     text-align: center;
     margin-top: 10px;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
 }
 .hamburger-react{
     margin: auto;
@@ -57,7 +58,7 @@
    color: #bdbdbd;
    font-weight: bold;
    text-decoration: none;
-   font-family: 'Times New Roman', Times, serif;
+   font-family: 'Noto Serif', serif;
 }
 
 
@@ -123,7 +124,7 @@
     font-size: 28px;
     color: #bdbdbd;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
     text-align: bottom;
     width: 250px;
 }
@@ -216,7 +217,7 @@
     margin-top: 10px;
     position: absolute;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
 }
 #close__detail svg{
     color: #ffffff;
@@ -228,7 +229,7 @@
     margin: 10px 20px 10px;
     font-size: 32px;
     font-weight: 700;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
     width: calc(100% -20px);
 }
 #button__save{
@@ -252,7 +253,7 @@
 .nav-item button{
     color: black;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
 }
 .nav-item button:hover{
     color: black;
@@ -346,7 +347,7 @@
 }
 #history__search>p{
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
     color: #9e9c9c;
 }
 #list__address{
@@ -354,7 +355,7 @@
 }
 #list__address>p{
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Noto Serif', serif;
     color: #9e9c9c;
 }
 #navigation{
@@ -548,6 +549,7 @@
     text-align: center;
     border-radius: 30px;
     cursor: pointer;
+    border: 1px solid black;
 }
 
 @media  only screen and  (max-width: 280px){

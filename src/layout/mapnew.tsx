@@ -141,9 +141,7 @@ const MapNew: React.FC<PropsMap> = ({
         marker.setLngLat(lngLat);
         map.setCenter(lngLat);
         map.setZoom(18);
-  
       })
-        
     }
   }
 
