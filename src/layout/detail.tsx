@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { MapContext } from '../contexts/tabnamecontext';
+import MapNew from './mapnew';
+import { LngLatLike, Map } from 'maplibre-gl';
 
 const Detail = () => {
     const [isTransform, setIsTransform] = useState(false); 
@@ -19,13 +21,80 @@ const Detail = () => {
         setIsClose(!isClose);
     };
 
-    const {isClickImage,setIiClickImage} = useContext(MapContext)!; 
-    const chiduong = () => {
+    const { isMap, setIsMap } = useContext(MapContext)!;
+    const {isClickImage,setIsClickImage} = useContext(MapContext)!; 
+
+    const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!; 
+    function chiduong(){
         const startStreetSelect = document.getElementById("start-street") as any;
         startStreetSelect.value = isClickImage;
         setIsClose(true);
-        setIsNavigation(false)
+        setIsNavigation(false);
+        setIsMap(false);
+
+        setIsBlockNavigation(false)
+        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
+        endSelect.selectedIndex = 0;
     };
+
+    // function realcoordinates(map: Map) { 
+    //     map.on("load", function () {
+    //         navigatorPosition(function (coordinates: any) {
+
+    //             const lnglon = [isClickImage, coordinates]
+    //             console.log(lnglon);
+                
+    //             // map.setCenter(coordinate);
+    //             const checkStart = map.getSource("path");
+
+    //             if (checkStart) {
+    //               (checkStart as maplibregl.GeoJSONSource).setData({
+    //                 type: "Feature",
+    //                 geometry: {
+    //                   type: "LineString",
+    //                   coordinates: lnglon,
+    //                 },
+    //                 properties: {},
+    //               });
+    //             } else {
+    //               map.addSource("path", {
+    //                 type: "geojson",
+    //                 data: {
+    //                   type: "Feature",
+    //                   geometry: {
+    //                     type: "LineString",
+    //                     coordinates: lnglon,
+    //                   },
+    //                 },
+    //               });
+          
+    //               map.addLayer({
+    //                 id: "path-layer",
+    //                 type: "line",
+    //                 source: "path",
+    //                 paint: {
+    //                   "line-color": "#6527BE",
+    //                   "line-opacity": 1,
+    //                   "line-width": 4,
+    //                 },
+    //               });
+    //             }
+    //         });
+    //     });
+    //     function navigatorPosition(callback: (coordinates: number[]) => void): void {
+    //       if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(function (position) {
+    //           const lng: number = position.coords.longitude;
+    //           const lat: number = position.coords.latitude;
+        
+    //           const coordinates: number[] = [lng, lat];
+    //           callback(coordinates);
+    //         });
+    //       } else {
+    //         console.log("Geolocation không được hỗ trợ trong trình duyệt này");
+    //       }
+    //     }
+    // }
 
     return(
         <div id='detail' style={{transform: isClose ? 'translateX(-200%)' : 'none',}}>
@@ -35,7 +104,6 @@ const Detail = () => {
             </svg>
             <span>CLOSE</span>
         </div>
-
 
         <div id='img_detail'>
             <img id="img-address" src="" alt="" />

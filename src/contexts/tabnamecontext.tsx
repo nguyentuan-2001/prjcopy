@@ -14,10 +14,18 @@ interface MapContextProps {
     setIsClose: React.Dispatch<React.SetStateAction<boolean>>;
 
     isClickImage: boolean;
-    setIiClickImage: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsClickImage: React.Dispatch<React.SetStateAction<boolean>>;
 
     isMap: boolean;
     setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
+
+    isBlockNavigation : boolean; 
+    setIsBlockNavigation: React.Dispatch<React.SetStateAction<boolean>>;
+
+    isCoordinate: any, 
+    setIsCoordinate: any
+    isMarker: any, 
+    setIsMarker: any
 }
 interface PropsAuthContext {
     children: ReactNode;
@@ -31,7 +39,12 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
     const [isSearch, setIsSearch] = useState(true); 
     const [isClose, setIsClose] = useState(true); 
     const [isMap, setIsMap] = useState(true); 
-    const [isClickImage, setIiClickImage] = useState<any>()
+    const [isClickImage, setIsClickImage] = useState<any>();
+    const [isBlockNavigation, setIsBlockNavigation] = useState(false);
+
+    const [isCoordinate, setIsCoordinate] = useState<any>();
+    const [isMarker, setIsMarker] = useState<any>();
+
     const contextValue: MapContextProps = {
         isList,
         setIsList,
@@ -42,9 +55,16 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
         isClose,
         setIsClose,
         isClickImage,
-        setIiClickImage,
+        setIsClickImage,
         isMap,
-        setIsMap
+        setIsMap,
+        isBlockNavigation, 
+        setIsBlockNavigation,
+
+        isCoordinate,
+        setIsCoordinate,
+        isMarker,
+        setIsMarker
     };
 
   return (

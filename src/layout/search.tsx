@@ -25,7 +25,7 @@ const Search = () => {
             </svg>
             <span>CLOSE</span>
         </div>
-        <MapNew/>
+
         <div>
             <div id='input_search'>
                 <div id='border_input_search'></div>

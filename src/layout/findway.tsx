@@ -20,8 +20,8 @@ library.add(fas);
 const FindWay = () => {
     const { isMap, setIsMap } = useContext(MapContext)!;
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
-    const [isBlockNavigation, setIsBlockNavigation] = useState(false);
-
+    const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!; 
+    
     const [isDiBoLength, setIsDiBoLength] = useState<string | undefined>();
     const [isDiBoTime, setIsDiBoTime] = useState<string | undefined>();
     const [isXeDapLength, setIsXeDapLength] = useState<string | undefined>();
@@ -32,10 +32,18 @@ const FindWay = () => {
     const [isOToTime, setIsOToTime] = useState<string | undefined>();
 
 
-    const closeNavigation = () => {
+    function resetSelectToDefault(selectElement: any) {
+        selectElement.selectedIndex = 0; // Đặt lại thành phần được chọn đầu tiên
+    }
+    function closeNavigation(){
         setIsNavigation(true);
         setIsMap(true);
         setIsBlockNavigation(false);
+        
+        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
+        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
+        startSelect.selectedIndex = 0; //update option selected index = 0
+        endSelect.selectedIndex = 0;
     };
     // function removeLayer(map: Map){
     //     map.getLayer('path-layer');
@@ -47,12 +55,17 @@ const FindWay = () => {
     // }
 
     function updateOptions(options: string[], selectElement: HTMLSelectElement) {
-        // delete list
+        // Delete existing options
         while (selectElement.firstChild) {
-        selectElement.removeChild(selectElement.firstChild);
+            selectElement.removeChild(selectElement.firstChild);
         }
-        //add list address
-        options.forEach(function(option) {
+        // Add blank option as the first element
+        var blankOption = document.createElement('option');
+        blankOption.textContent = '';
+        selectElement.appendChild(blankOption);
+    
+        // Add list of addresses as options
+        options.forEach(function (option) {
             var optionElement = document.createElement('option');
             optionElement.textContent = option;
             selectElement.appendChild(optionElement);
@@ -90,7 +103,7 @@ const FindWay = () => {
     
             const center= startPoint as maplibregl.LngLatLike ;
             map.setCenter(center);
-            map.setZoom(16.5);
+            map.setZoom(17.5);
             findPath(startPoint,endPoint,map);
     
         }
@@ -144,8 +157,6 @@ const FindWay = () => {
                 }
                 }
             });
-    
-
     
             if (nearestPoint && nearestPoint1){
                 const pathFinder = new PathFinder(geojson);
@@ -206,7 +217,7 @@ const FindWay = () => {
                             type: 'line',
                             source: 'path',
                             paint: {
-                            'line-color': '#2B2730',
+                            'line-color': '#1D5D9B',
                             'line-opacity': 1,
                             'line-width': 4,
                             },
@@ -216,7 +227,7 @@ const FindWay = () => {
                             type: 'line',
                             source: 'path',
                             paint: {
-                            'line-color': '#9BABB8',
+                            'line-color': '#6528F7',
                             'line-opacity': 0.5,
                             'line-width': 12,
                             },
@@ -384,10 +395,10 @@ const FindWay = () => {
                                 <div className="col-2">
                                     <div id='img_dibo'><img src="../images/dibo.png" alt="" /></div>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-5">
                                     <span>Đi thẳng</span>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-5">
                                     <div id='length'>
                                         <b id='length_dibo'>{isDiBoLength}</b>
                                         <p id='time_dibo'>{isDiBoTime}</p>
@@ -402,10 +413,10 @@ const FindWay = () => {
                                 <div className="col-2">
                                     <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-5">
                                     <span>Đi thẳng</span>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-5">
                                     <div id='length'>
                                         <b id='length_xedap'>{isXeDapLength}</b>
                                         <p id='time_xedap'>{isXeDapTime}</p>
@@ -418,7 +429,7 @@ const FindWay = () => {
                         <div className='if-length'>
                             <div className="row">
                                 <div className="col-2">
-                                    <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
+                                    <div id='img_dibo'><img src="../images/xemay.png" alt="" /></div>
                                 </div>
                                 <div className="col-5">
                                     <span>Đi thẳng</span>
@@ -436,7 +447,7 @@ const FindWay = () => {
                         <div className='if-length'>
                             <div className="row">
                                 <div className="col-2">
-                                    <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
+                                    <div id='img_dibo'><img src="../images/oto.png" alt="" /></div>
                                 </div>
                                 <div className="col-5">
                                     <span>Đi thẳng</span>
