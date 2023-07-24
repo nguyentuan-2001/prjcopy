@@ -393,8 +393,8 @@
     height: 30px;
 }
 #select__address{
-    width: 90%;
-    padding: 5% 5% 0;
+    width: 85%;
+    padding: 5% 0% 0% 5%;
     position: relative;
 }
 #select__address select{
@@ -449,7 +449,7 @@
     width: 30px;
     height: 30px;
     float: right;
-    transform: translate(70px, -90px);
+    transform: translate(50px, -90px);
     cursor: pointer;
 }
 #suggestions-list{
