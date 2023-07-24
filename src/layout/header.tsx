@@ -14,6 +14,7 @@ const Header = () => {
     const { isSearch, setIsSearch } = useContext(MapContext)!;
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
     const {isClose, setIsClose} = useContext(MapContext)!; 
+    const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!;
 
     const openList = () => {
         setIsList(false);
@@ -21,6 +22,11 @@ const Header = () => {
         setIsSearch(true);
         setIsMap(false);
         setIsClose(true);
+        setIsBlockNavigation(false);
+        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
+        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
+        startSelect.selectedIndex = 0; //update option selected index = 0
+        endSelect.selectedIndex = 0;
     };
 
     const openNavigation = () => {
@@ -37,6 +43,11 @@ const Header = () => {
         setIsList(true);
         setIsMap(false);
         setIsClose(true);
+        setIsBlockNavigation(false);
+        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
+        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
+        startSelect.selectedIndex = 0; //update option selected index = 0
+        endSelect.selectedIndex = 0;
     };
 
     const openMap = () => {
@@ -45,6 +56,11 @@ const Header = () => {
         setIsList(true);
         setIsMap(true);
         setIsClose(true);
+        setIsBlockNavigation(false);
+        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
+        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
+        startSelect.selectedIndex = 0; //update option selected index = 0
+        endSelect.selectedIndex = 0;
     };
     const [isOpen, setIsOpen] = useState(true)
 

@@ -26,14 +26,14 @@ const Detail = () => {
 
     const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!; 
     function chiduong(){
-        const startStreetSelect = document.getElementById("start-street") as any;
+        const startStreetSelect = document.getElementById("end-street") as any;
         startStreetSelect.value = isClickImage;
         setIsClose(true);
         setIsNavigation(false);
         setIsMap(false);
 
         setIsBlockNavigation(false)
-        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
+        var endSelect = document.getElementById('start-street') as HTMLSelectElement;
         endSelect.selectedIndex = 0;
     };
 

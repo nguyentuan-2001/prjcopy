@@ -107,12 +107,16 @@ const FindWay = () => {
             findPath(startPoint,endPoint,map);
     
         }
-        document.getElementById('icon__search1')?.addEventListener('click', function() {
-            searchPoint();
-        });
-        document.getElementById('icon__search2')?.addEventListener('click', function() {
-            searchPoint();
-        });
+        function handleSelectChange() {
+            // Kiểm tra xem cả hai select đã chọn option hay chưa
+            if (startStreetSelect.value && endStreetSelect.value) {
+              searchPoint();
+            }
+        }
+      
+        // Lắng nghe sự kiện change trên 2 select elements
+        startStreetSelect.addEventListener('change', handleSelectChange);
+        endStreetSelect.addEventListener('change', handleSelectChange);
     }
     
     function findPath(startPoint: number[], endPoint: number[], map: Map) {
@@ -330,7 +334,7 @@ const FindWay = () => {
                 <div id='select__address'>
                     <div className='icon__select1'>
                         <span><FontAwesomeIcon icon="crosshairs" /></span>           
-                        <select className="form-control form-control" id="start-street"  >
+                        <select className="form-control form-control" id="start-street" >
                             <option value="" disabled>
                                 Chọn điểm bắt đầu
                             </option>
@@ -348,10 +352,6 @@ const FindWay = () => {
                         <p></p>
                         <p></p>
                         <p></p>
-                    </div>
-                    <div>
-                        <FontAwesomeIcon icon="search" id='icon__search1' />
-                        <FontAwesomeIcon icon="search" id='icon__search2'/>
                     </div>
                     <div id='repeart'>
                         <img src="../images/repeart.png" alt="" />

@@ -399,7 +399,7 @@
 }
 #select__address select{
     margin-bottom: 20px;
-    padding: 10px 0;
+    padding: 10px 15px;
 }
 #all__select{
     display: flex;
