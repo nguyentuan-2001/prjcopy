@@ -56,7 +56,7 @@ export function object3d(map: Map, coordinate: LngLatLike, name: string,layerNam
             const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
             const textMesh = new THREE.Mesh(textGeometry, textMaterial);
             textMesh.position.set(0, height, 0);
-            textMesh.scale.set(2, 2, 0.5);
+            textMesh.scale.set(2.5, 2.5, 0.5);
             textMesh.rotation.set(-Math.PI / 2,0, 0);
   
             this.scene.add(textMesh);
