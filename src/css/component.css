@@ -47,21 +47,21 @@
 .hamburger-react > div:nth-child(2) {
     width: 24px !important;
 }
-#list_a{
+#list_p{
     height: 40%;
     text-align: center;
     position: relative;
     padding-top: 20%;
     opacity: 1;
 }
-#list_a a{ 
+#list_p p{ 
    color: #bdbdbd;
    font-weight: bold;
    text-decoration: none;
    font-family: 'Noto Serif', serif;
+   padding: 15px 0;
+   cursor: pointer;
 }
-
-
 #logo{
     height: calc(100% - 40% - 15% - 50px);
     width: 100%;
@@ -400,6 +400,7 @@
 #select__address select{
     margin-bottom: 20px;
     padding: 10px 15px;
+    border: 1px solid #eac870;
 }
 #all__select{
     display: flex;
@@ -551,7 +552,12 @@
     cursor: pointer;
     border: 1px solid black;
 }
-
+.tab-content>div{
+    width: 90%;
+}
+#pills-home{
+    margin-right: 20px;
+}
 @media  only screen and  (max-width: 280px){
     .header_all{
         width: 50%;
@@ -567,7 +573,7 @@
         z-index: 4;
     }
     #nav-tab button{
-        font-size: 20px;
+        font-size: 17px;
         width: 160px;
         height: 100%;
         padding: 20px 10px;
@@ -623,8 +629,11 @@
         width: 70%;
         margin-left: 30%;
     }
+    #nav-tab{
+        height: 20%;
+    }
     #nav-tab button{
-        font-size: 20px;
+        font-size: 17px;
         width: 160px;
         height: 100%;
         padding: 20px 10px;
@@ -659,9 +668,21 @@
         margin-left: 30%;
         width: 70%;
     }
+    #pills-tab button{
+        padding: 8px;
+    }
+    #repeart img{
+        transform: translate(30px, -90px);
+    }
+    #pills-home{
+        margin-right: 20px;
+    }
 }
 
 @media only screen and (min-width: 377px) and (max-width: 480px){
+    #pills-home{
+        margin-right: 20px;
+    }
     .header_all{
         width: 30%;
         display: block;
@@ -678,7 +699,7 @@
         height: 17%;
     }
     #nav-tab button{
-        font-size: 24px;
+        font-size: 20px;
         width: 180px;
         height: 100%;
         padding: 20px 10px;

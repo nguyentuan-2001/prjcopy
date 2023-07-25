@@ -22,6 +22,11 @@ interface MapContextProps {
     isBlockNavigation : boolean; 
     setIsBlockNavigation: React.Dispatch<React.SetStateAction<boolean>>;
 
+    startValue: any;
+    setStartValue: any;
+    endValue: any;
+    setEndValue: any
+
     isCoordinate: any, 
     setIsCoordinate: any
     isMarker: any, 
@@ -41,6 +46,8 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
     const [isMap, setIsMap] = useState(true); 
     const [isClickImage, setIsClickImage] = useState<any>();
     const [isBlockNavigation, setIsBlockNavigation] = useState(false);
+    const [startValue, setStartValue] = useState('');
+    const [endValue, setEndValue] = useState('');
 
     const [isCoordinate, setIsCoordinate] = useState<any>();
     const [isMarker, setIsMarker] = useState<any>();
@@ -60,6 +67,10 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
         setIsMap,
         isBlockNavigation, 
         setIsBlockNavigation,
+        startValue, 
+        setStartValue,
+        endValue,
+        setEndValue,
 
         isCoordinate,
         setIsCoordinate,

@@ -64,7 +64,6 @@ const TabName = () => {
         setIsCuaHang(false);
     };
 
-
     //showAddress(isCoordinate, isMarker, array);
 
     function getBounds(coordinates: maplibregl.LngLatLike) {
@@ -72,90 +71,7 @@ const TabName = () => {
         bounds.extend(coordinates);
         return bounds;
     }
-    // function showAddress(map: Map, marker: Marker, array = []) {
-    //     const options = data.features.map((feature) => feature.properties.name);
-    //     const myElement = document.getElementById("ul__union") as HTMLUListElement;
-    //     if (myElement) {
-    //       // Xóa các phần tử <li> cũ
-    //       while (myElement.firstChild) {
-    //         myElement.firstChild.remove();
-    //       }
-    //       // Tạo danh sách các phần tử <li>
-    //       const listItems = options.map((name, index) => {
-    //         const listItem = document.createElement("li");
-    //         listItem.textContent = name;
-    //         listItem.style.display = "none";
-    //         listItem.innerHTML = ` 
-    //             <img src="../images/union.png" alt="" />
-    //             <p>${name}</p>
-    //           `;
-    //         // <span>${index + 1}</span>
-    //         return listItem;
-    //       });
-    
-    //       // Add li in list
-    //       listItems.forEach((item) => {
-    //         myElement.appendChild(item);
-    //       });
-    
-    //       const handleButtonClick = (type: string) => {
-    //         listItems.forEach((item, index) => {
-    //           const datas = data.features[index];
-    //           if (datas.properties.type === type) {
-    //             item.style.display = "flex"; // Hiển thị phần tử tương ứng với loại được nhấp vào
-    //           } else {
-    //             item.style.display = "none"; // Ẩn các phần tử không phù hợp
-    //           }
-    //         });
-    //       };
-    //       handleButtonClick("hall");
-    //       document.getElementById("nav-khoa-tab")?.addEventListener("click", () => {
-    //         handleButtonClick(array[0]);
-    //       });
-    
-    //       document.getElementById("nav-vien-tab")?.addEventListener("click", () => {
-    //         handleButtonClick(array[1]);
-    //       });
-    
-    //       document
-    //         .getElementById("nav-phong-tab")
-    //         ?.addEventListener("click", () => {
-    //           handleButtonClick(array[2]);
-    //         });
-    //       document
-    //         .getElementById("nav-thuvien-tab")
-    //         ?.addEventListener("click", () => {
-    //           handleButtonClick(array[3]);
-    //         });
-    
-    //       document
-    //         .getElementById("nav-cuahang-tab")
-    //         ?.addEventListener("click", () => {
-    //           handleButtonClick(array[4]);
-    //         });
-    
-    //       // Xử lý sự kiện click cho từng phần tử
-    //       listItems.forEach((item, index) => {
-    //         const datas = data.features[index];
-    //         const coordinates: maplibregl.LngLatLike = datas.geometry.coordinates as maplibregl.LngLatLike;
-    //         item.addEventListener("click", () => {
-    //           setIsList(true);
-    //           setIsMap(true);
-    //           setIsClose(false);
-
-    //           showLocationDetail(datas);
-            
-    //           marker.setLngLat(coordinates);
-    //           map.setCenter(coordinates);
-    //           map.setZoom(18);
-    //           map.fitBounds(getBounds(coordinates), {
-    //             padding: 100,
-    //           });
-    //         });
-    //       });
-    //     }
-    // }
-
+ 
     const {isCoordinate, setIsCoordinate} = useContext(MapContext)!; 
     const { isClose, setIsClose } = useContext(MapContext)!;
     const {isMarker, setIsMarker} = useContext(MapContext)!; 
@@ -270,8 +186,6 @@ const TabName = () => {
                     </li>
                 ))}
             </ul>
-    
-            {/* <ul id="ul__union"></ul> */}
         </div>
 
     </div>

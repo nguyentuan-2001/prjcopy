@@ -15,6 +15,8 @@ const Header = () => {
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
     const {isClose, setIsClose} = useContext(MapContext)!; 
     const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!;
+    const {startValue, setStartValue} = useContext(MapContext)!;
+    const {endValue, setEndValue} = useContext(MapContext)!;
 
     const openList = () => {
         setIsList(false);
@@ -23,10 +25,8 @@ const Header = () => {
         setIsMap(false);
         setIsClose(true);
         setIsBlockNavigation(false);
-        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
-        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
-        startSelect.selectedIndex = 0; //update option selected index = 0
-        endSelect.selectedIndex = 0;
+        setStartValue('');
+        setEndValue('');
     };
 
     const openNavigation = () => {
@@ -44,10 +44,8 @@ const Header = () => {
         setIsMap(false);
         setIsClose(true);
         setIsBlockNavigation(false);
-        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
-        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
-        startSelect.selectedIndex = 0; //update option selected index = 0
-        endSelect.selectedIndex = 0;
+        setStartValue('');
+        setEndValue('');
     };
 
     const openMap = () => {
@@ -57,10 +55,8 @@ const Header = () => {
         setIsMap(true);
         setIsClose(true);
         setIsBlockNavigation(false);
-        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
-        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
-        startSelect.selectedIndex = 0; //update option selected index = 0
-        endSelect.selectedIndex = 0;
+        setStartValue('');
+        setEndValue('');
     };
     const [isOpen, setIsOpen] = useState(true)
 
@@ -76,14 +72,11 @@ const Header = () => {
             </div>
             <div id='line_image'></div>
 
-            <div id='list_a'>
-                <a href='#' onClick={openMap} style={{ color: isMap ? 'black' : '#9e9c9c' }}>BẢN ĐỒ</a>
-                <br /><br />
-                <a href='#' onClick={openList} style={{ color: isList ? '#9e9c9c' : 'black' }}>KHU VỰC</a>
-                <br /><br />
-                <a href='#' onClick={openSearch} style={{ color: isSearch ? '#9e9c9c' : 'black' }}>TÌM KIẾM</a>
-                <br /><br />
-                <a href='#' onClick={openNavigation}  style={{ color: isNavigation ? '#9e9c9c' : 'black' }}>CHỈ ĐƯỜNG</a>
+            <div id='list_p'>
+                <p onClick={openMap} style={{ color: isMap ? 'black' : '#9e9c9c' }}>BẢN ĐỒ</p>
+                <p onClick={openList} style={{ color: isList ? '#9e9c9c' : 'black' }}>KHU VỰC</p>
+                <p onClick={openSearch} style={{ color: isSearch ? '#9e9c9c' : 'black' }}>TÌM KIẾM</p>
+                <p onClick={openNavigation}  style={{ color: isNavigation ? '#9e9c9c' : 'black' }}>CHỈ ĐƯỜNG</p>
             </div>
 
             <div id='logo'>

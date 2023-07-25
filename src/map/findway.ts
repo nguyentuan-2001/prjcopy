@@ -115,7 +115,7 @@ function findPath(startPoint: number[], endPoint: number[], map: Map) {
             const finish = point(nearestPoint1);
             const path = pathFinder.findPath(startp, finish);
 
-            const calculatedDistance = distance(startp, finish, { units: 'kilometers' });
+            const calculatedDistance = distance(startp, finish,{ units: 'kilometers' });
             const calculatedDistanceInMeters = calculatedDistance * 1000;
             
             const showIfLength = document.getElementById('navigation__child') as HTMLElement;

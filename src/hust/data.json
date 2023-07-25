@@ -5,7 +5,7 @@
             "type":"Feature",
             "geometry": {
                 "coordinates": [
-                    105.84245480285728, 21.006464903247803 
+                    105.8423346755345, 21.006418139019843
                 ],
                 "type": "Point"
               },
@@ -13,9 +13,9 @@
                 "id":1,
                 "height": 10,
                 "name":"Hội trường C2",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -24,17 +24,17 @@
             "type":"Feature",
             "geometry": {
                 "coordinates": [
-                    105.84312352338884,21.006230664126033
+                    105.84304680202487,21.0063930995241
                 ],
                 "type": "Point"
               },
             "properties": {
                 "id":2,
-                "height": 10,
+                "height": 0,
                 "name":"Đài phun nước Bách Khoa",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "http://daiphunnuoc.com/media/fck/DSC03822.JPG",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": " đối tôn trọng cuộc sống của động vật: Không sử dụng đèn Flash khi chụp ảnh động vật; Không ném đồ vật vào khu vực động vật sinh sống, không quấy nhiễu, kích động chọc phá động vật dưới mọi hình thức; Không được vào khu vực chuồng trại của động vật và khu vực nội bộ dành riêng cho nhân viên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.",
                 "type":"hall"
             }
@@ -44,7 +44,7 @@
             "type":"Feature",
             "geometry": {
                 "coordinates": [
-                    105.84384073644767,21.006654762133827
+                    105.84393461316833,21.00658965950803 
                 ],
                 "type": "Point"
               },
@@ -52,9 +52,9 @@
                 "id":3,
                 "height": 10,
                 "name":"Nhà C3 Đại học Bách Khoa Hà Nội",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/3/9/1021652/A2.jpg",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": " Không sử dụng đèn Flash khi chụp ảnh động vật; Không ném đồ vật vào khu vực động vật sinh sống, không quấy nhiễu, kích động chọc phá động vật dưới mọi hình thức; Không được vào khu vực chuồng trại của động vật và khu vực nội bộ dành riêng cho nhân viên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.",
                 "type":"classroom"
             }
@@ -71,9 +71,9 @@
                 "id":4,
                 "height": 10,
                 "name":"Viện Kỹ thuật Hoá học - Đại học Bách Khoa",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://www.wowweekend.vn/document_root/upload/articles/image/BrowseContent/TipsAdvice/202009/Nhung%20dieu%20linh%20moi%20can%20biet%20ve%20mon%20the%20thao%20nuoc/shutterstock_1311762773.jpg",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": " Không sử dụng đèn Flash khi chụp ảnh động vật; Không ném đồ vật vào khu vực động vật sinh sống, không quấy nhiễu, kích động chọc phá động vật dưới mọi hình thức; Không được vào khu vực chuồng trại của động vật và khu vực nội bộ dành riêng cho nhân viên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.",
                 "type":"classroom"
             }
@@ -90,9 +90,9 @@
                 "id":5,
                 "height": 10,
                 "name":"Viện CNSH và CNTP",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://photos.wikimapia.org/p/00/01/15/77/05_big.jpg",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": " Không sử dụng đèn Flash khi chụp ảnh động vật; Không ném đồ vật vào khu vực động vật sinh sống, không quấy nhiễu, kích động chọc phá động vật dưới mọi hình thức; Không được vào khu vực chuồng trại của động vật và khu vực nội bộ dành riêng cho nhân viên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.",
                 "type":"classroom"
             }
@@ -102,7 +102,7 @@
             "type":"Feature",
             "geometry": {
                 "coordinates": [
-                    105.8434598627703, 21.00569825165736
+                    105.8435242880297, 21.005574595775993
                 ],
                 "type": "Point"
               },
@@ -110,9 +110,9 @@
                 "id":6,
                 "height": 10,
                 "name":"Bộ môn Kỹ Thuật Hàng Không Và Vũ Trụ",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://res.klook.com/image/upload/c_fill,w_750,h_500/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/ya81ymx9gwnl7xfitpfo.jpg",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": " Không sử dụng đèn Flash khi chụp ảnh động vật; Không ném đồ vật vào khu vực động vật sinh sống, không quấy nhiễu, kích động chọc phá động vật dưới mọi hình thức; Không được vào khu vực chuồng trại của động vật và khu vực nội bộ dành riêng cho nhân viên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.Vì sự an toàn của chính mình và cộng đồng, chúng tôi mong nhận được sự hợp tác tích cực và tự nguyện của Quý khách. Ban Quản lý có thể yêu cầu Quý khách ra khỏi VinWonders và không chịu trách nhiệm hoàn trả tiền vé cũng như đền bù thiệt hại nếu Quý khách không tuân thủ các quy định nêu trên.",
                 "type":"classroom"
             }
@@ -121,7 +121,7 @@
             "type":"Feature",
             "geometry": {
                 "coordinates": [
-                   105.84419287416395,21.00702328290278
+                   105.84407274694753,21.00693144791877 
                 ],
                 "type": "Point"
               },
@@ -129,9 +129,9 @@
                 "id":7,
                 "height": 10,
                 "name":"Nhà công nghệ cao HITECH",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -140,7 +140,7 @@
             "type":"Feature",
             "geometry": {
                 "coordinates": [
-                    105.84472126933356, 21.00670778613393
+                    105.84472184152409, 21.006610943064103
                 ],
                 "type": "Point"
               },
@@ -148,9 +148,9 @@
                 "id":8,
                 "height": 10,
                 "name":"C3B - Trung tâm Ngôn ngữ",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"classroom"
             }
@@ -167,9 +167,9 @@
                 "id":9,
                 "height": 10,
                 "name":"Trường Điện - Điện tử",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -186,9 +186,9 @@
                 "id":10,
                 "height": 10,
                 "name":"C1 building",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -205,9 +205,9 @@
                 "id":11,
                 "height": 10,
                 "name":"Viện Khoa học và Kỹ thuật Vật liệu",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -224,9 +224,9 @@
                 "id":12,
                 "height": 10,
                 "name":"Trường Cơ Khí",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -241,11 +241,11 @@
               },
             "properties": {
                 "id":13,
-                "height": 10,
+                "height": 20,
                 "name":"Viện Cơ khí Động lực",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"hall"
             }
@@ -260,11 +260,11 @@
               },
             "properties": {
                 "id":14,
-                "height": 10,
+                "height": 20,
                 "name":"Nhà C7",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"classroom"
             }
@@ -282,9 +282,9 @@
                 "id":15,
                 "height": 30,
                 "name":"Thư viện Tạ Quang Bửu",
-                "image_url_1": "../images/point.png",
+                "image_url_1": "../images/mark.png",
                 "image_url_2": "https://lh5.googleusercontent.com/p/AF1QipMyH3W5j2fPxGRdYbDgsJoH_vRmEAiiciHkWbMV=w408-h306-k-no",
-                "iconSize": [25, 25],
+                "iconSize": [28, 35],
                 "desc": "Tuyệt đối tôn trọng cuộc sống của động vật.",
                 "type":"library"
             }

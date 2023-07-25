@@ -39,86 +39,17 @@ const FindWay = () => {
         setIsNavigation(true);
         setIsMap(true);
         setIsBlockNavigation(false);
-        
-        var startSelect = document.getElementById('start-street') as HTMLSelectElement;
-        var endSelect = document.getElementById('end-street') as HTMLSelectElement;
-        startSelect.selectedIndex = 0; //update option selected index = 0
-        endSelect.selectedIndex = 0;
-    };
-    // function removeLayer(map: Map){
-    //     map.getLayer('path-layer');
-    //     map.removeLayer('path-layer');
-    //     map.getLayer('path-layer1');
-    //     map.removeLayer('path-layer1');
-    //     map.getSource('path');
-    //     map.removeSource('path');
-    // }
 
-    function updateOptions(options: string[], selectElement: HTMLSelectElement) {
-        // Delete existing options
-        while (selectElement.firstChild) {
-            selectElement.removeChild(selectElement.firstChild);
-        }
-        // Add blank option as the first element
-        var blankOption = document.createElement('option');
-        blankOption.textContent = '';
-        selectElement.appendChild(blankOption);
-    
-        // Add list of addresses as options
-        options.forEach(function (option) {
-            var optionElement = document.createElement('option');
-            optionElement.textContent = option;
-            selectElement.appendChild(optionElement);
-        });
-    }
-    
-    function findway(map: Map){
-        // get the addresses
-        const startStreetSelect = document.getElementById('start-street') as HTMLSelectElement;
-        const endStreetSelect = document.getElementById('end-street') as HTMLSelectElement;
-    
-        const options = data.features.map(feature => feature.properties.name);
-        updateOptions(options, startStreetSelect);
-        updateOptions(options, endStreetSelect);
-    
-        function searchPoint(){
-            const startSelect = document.getElementById('start-street') as HTMLSelectElement;
-            const endSelect = document.getElementById('end-street') as HTMLSelectElement;
-    
-            const startAddress = startSelect.value;
-            const endAddress = endSelect.value;
-    
-            const startResults = data.features.filter(function(feature) {
-                return feature.properties.name.toLowerCase().includes(startAddress.toLowerCase());
-            });
-    
-            const endResults = data.features.filter(function(feature) {
-                return feature.properties.name.toLowerCase().includes(endAddress.toLowerCase());
-            });
-    
-            var startPoint= startResults[0].geometry.coordinates;
-            console.log('Điểm băt đầu:', startPoint);
-            var endPoint = endResults[0].geometry.coordinates;
-            console.log('Điểm kết thúc:', endPoint);
-    
-            const center= startPoint as maplibregl.LngLatLike ;
-            map.setCenter(center);
-            map.setZoom(17.5);
-            findPath(startPoint,endPoint,map);
-    
-        }
-        function handleSelectChange() {
-            // Kiểm tra xem cả hai select đã chọn option hay chưa
-            if (startStreetSelect.value && endStreetSelect.value) {
-              searchPoint();
-            }
-        }
-      
-        // Lắng nghe sự kiện change trên 2 select elements
-        startStreetSelect.addEventListener('change', handleSelectChange);
-        endStreetSelect.addEventListener('change', handleSelectChange);
-    }
-    
+        setStartValue('');
+        setEndValue('');
+    };
+
+    const options = data.features.map((feature) => feature.properties.name);
+    const [listItem, setListItem] = useState(options);
+    const {startValue, setStartValue} = useContext(MapContext)!;
+    const {endValue, setEndValue} = useContext(MapContext)!;
+    const {isCoordinate, setIsCoordinate} = useContext(MapContext)!; 
+
     function findPath(startPoint: number[], endPoint: number[], map: Map) {
         fetch(roads)
             .then((response) => response.json())
@@ -168,7 +99,7 @@ const FindWay = () => {
                 const finish = point(nearestPoint1);
                 const path = pathFinder.findPath(startp, finish);
     
-                const calculatedDistance = distance(startp, finish, { units: 'kilometers' });
+                const calculatedDistance = distance(startp, finish,{ units: 'kilometers' } );
                 const calculatedDistanceInMeters = calculatedDistance * 1000;
                  
                 setIsBlockNavigation(true);
@@ -319,6 +250,39 @@ const FindWay = () => {
             console.error('Lỗi khi tìm đường:', error);
         });
     }
+
+    const searchPoint = (map: Map) => {
+        const startResults = data.features.filter(function(feature) {
+            return feature.properties.name.toLowerCase().includes(startValue.toLowerCase());
+          });
+      
+          const endResults = data.features.filter(function(feature) {
+            return feature.properties.name.toLowerCase().includes(endValue.toLowerCase());
+          });
+      
+          var startPoint = startResults[0]?.geometry.coordinates;
+          console.log('Điểm bắt đầu:', startPoint);
+          var endPoint = endResults[0]?.geometry.coordinates;
+          console.log('Điểm kết thúc:', endPoint);
+      
+          const center = startPoint as maplibregl.LngLatLike;
+          map.setCenter(center);
+          map.setZoom(17.5);
+          findPath(startPoint, endPoint, map);
+    }
+    useEffect(() => {
+        const map = isCoordinate;
+        if (startValue && endValue) {
+          searchPoint(map);       
+        }
+    }, [startValue, endValue]);
+    
+    const handleSwap = () => {
+        // Đổi giá trị các select khi nhấn nút "Swap"
+        const tempValue = startValue;
+        setStartValue(endValue);
+        setEndValue(tempValue);
+    };
   
   return (
         <div id='navigation' style={{transform: isNavigation ? 'translateX(-200%)' : 'none'}}>
@@ -329,23 +293,33 @@ const FindWay = () => {
                 </svg>
                 <span>CLOSE</span>
             </div>
-            <MapNew findway={findway}/>
+            <MapNew />
             <div id='all__select'>
                 <div id='select__address'>
                     <div className='icon__select1'>
                         <span><FontAwesomeIcon icon="crosshairs" /></span>           
-                        <select className="form-control form-control" id="start-street" >
-                            <option value="" disabled>
+                        <select className="form-control form-control" id="start-street" value={startValue} onChange={(e) => setStartValue(e.target.value)}>
+                            <option value="">
                                 Chọn điểm bắt đầu
                             </option>
+                            {listItem.map((name, index) => (
+                                <option key={index} value={name}>
+                                {name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div className='icon__select2'>
                         <span><FontAwesomeIcon icon="map-marker-alt" /></span>  
-                        <select className="form-control input-solid" id="end-street" >
-                            <option value="" disabled>
+                        <select className="form-control input-solid" id="end-street" value={endValue} onChange={(e) => setEndValue(e.target.value)} >
+                            <option value="">
                                 Chọn điểm cần đến
                             </option>
+                            {listItem.map((name, index) => (
+                                <option key={index} value={name}>
+                                {name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div id='dots'>
@@ -353,7 +327,7 @@ const FindWay = () => {
                         <p></p>
                         <p></p>
                     </div>
-                    <div id='repeart'>
+                    <div id='repeart' onClick={handleSwap}>
                         <img src="../images/repeart.png" alt="" />
                     </div>
                 </div>

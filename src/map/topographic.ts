@@ -1,7 +1,7 @@
 import maplibregl, { Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import data from '../hust/data.json';
-import { object3d } from './object3d';
+import { object3d, object3dcar } from './object3d';
 
 const roads = require('../hust/bd.geojson');
 const building = require('../hust/nha.geojson');
@@ -98,6 +98,9 @@ function overMap(map: Map){
       });
     });
 
+    const customLayer= object3dcar(map);
+    map.addLayer(customLayer);
+
     // map.addLayer({
     //   id: 'vin-name',
     //   type: 'symbol',
@@ -125,19 +128,19 @@ function overMap(map: Map){
     //   }
     // });
 
-    // let layerCount = 1;
-    // for (const feature of data.features) { 
-    //   const coordinate: any = feature.geometry.coordinates;
-    //   const name = feature.properties.name;
-    //   const height = feature.properties.height;
-    //   const layerName = `custom${layerCount++}`;
-    //   // Remove any previously added layer with the same name
-    //   if (map.getLayer(layerName)) {
-    //     map.removeLayer(layerName);
-    //   }
-    //   const customLayer = object3d(map, coordinate,name, layerName, height);
-    //   map.addLayer(customLayer);
-    // }
+    let layerCount = 1;
+    for (const feature of data.features) { 
+      const coordinate: any = feature.geometry.coordinates;
+      const name = feature.properties.name;
+      const height = feature.properties.height;
+      const layerName = `custom${layerCount++}`;
+      // Remove any previously added layer with the same name
+      if (map.getLayer(layerName)) {
+        map.removeLayer(layerName);
+      }
+      const customLayer = object3d(map, coordinate,name, layerName, height);
+      map.addLayer(customLayer);
+    }
   });
 }
 
