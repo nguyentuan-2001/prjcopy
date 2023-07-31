@@ -1,7 +1,7 @@
 import maplibregl, { Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import data from '../hust/data.json';
-import { object3d, object3dcar } from './object3d';
+import { object3d, object3dcar, object3dcube } from './object3d';
 
 const roads = require('../hust/bd.geojson');
 const building = require('../hust/nha.geojson');
@@ -100,6 +100,9 @@ function overMap(map: Map){
 
     const customLayer= object3dcar(map);
     map.addLayer(customLayer);
+
+    const customLayer1= object3dcube(map);
+    map.addLayer(customLayer1);
 
     // map.addLayer({
     //   id: 'vin-name',

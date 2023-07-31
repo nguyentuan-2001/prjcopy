@@ -226,7 +226,7 @@ const MapNew: React.FC<PropsMap> = ({
     }
     
     map.once('load', function () {
-      const rotationSpeed = 1.5;
+      const rotationSpeed = 0.15;
       rotateMapContinuously(map, 0, rotationSpeed);
     });
     

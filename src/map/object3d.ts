@@ -217,3 +217,102 @@ export function object3dcar(map: Map){
 
   return customLayer;
 }
+
+
+function setupCamera() {
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 1); // Set your camera position here
+  return camera;
+}
+
+function setupScene() {
+  const scene = new THREE.Scene();
+  const ambientLight = new THREE.AmbientLight(0xffffff);
+  scene.add(ambientLight);
+  return scene;
+}
+const scene = setupScene();
+const camera = setupCamera();
+let renderer: THREE.WebGLRenderer;
+
+export function object3dcube(map: Map) {
+  const modelOrigin: [number, number] = [105.84183747712848, 21.005014986140835];
+  const modelAltitude = 0;
+  const modelRotate = [Math.PI / 2, 0, 0];
+
+  const modelAsMercatorCoordinate = maplibregl.MercatorCoordinate.fromLngLat(
+    modelOrigin,
+    modelAltitude
+  );
+
+  const modelTransform = {
+    translateX: modelAsMercatorCoordinate.x,
+    translateY: modelAsMercatorCoordinate.y,
+    translateZ: modelAsMercatorCoordinate.z,
+    rotateX: modelRotate[0],
+    rotateY: modelRotate[1],
+    rotateZ: modelRotate[2],
+    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits(),
+  };
+
+  const customLayer: any = {
+    id: '3d-model10',
+    type: 'custom',
+    renderingMode: '3d',
+    onAdd: function (map: Map, gl: WebGLRenderingContext) {
+        renderer = new THREE.WebGLRenderer({
+        canvas: map.getCanvas(),
+        context: gl,
+        antialias: true,
+      });
+
+      renderer.autoClear = false;
+
+      const loader = new GLTFLoader();
+      loader.load(
+        truck,
+        (gltf) => {
+          const carModel = gltf.scene;
+          //scene.add(carModel);
+          const renderer = new THREE.WebGLRenderer();
+
+          const backgroundMaterial = new THREE.MeshBasicMaterial({ color: 0x3300FF });
+          const backgroundGeometry = new THREE.BoxGeometry(1, 1, 0.1);
+          const backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
+          backgroundMesh.scale.set(1,3,1);
+          scene.add(backgroundMesh);
+
+          function animate() {
+            requestAnimationFrame(animate);
+            if (backgroundMesh) {
+              backgroundMesh.rotation.y += 0.1;
+              // carModel.position.setX(1);
+              // carModel.position.setZ(1);
+            }
+            renderer.render(scene, camera);
+          }
+          animate();
+          }
+      );
+    },
+    render: function (gl: WebGLRenderingContext, matrix: number[]) {
+      const rotationX = new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(1, 0, 0), modelTransform.rotateX);
+      const rotationY = new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(0, 1, 0), modelTransform.rotateY);
+      const rotationZ = new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(0, 0, 1), modelTransform.rotateZ);
+
+      const m = new THREE.Matrix4().fromArray(matrix);
+      const l = new THREE.Matrix4()
+        .makeTranslation(modelTransform.translateX, modelTransform.translateY, modelTransform.translateZ)
+        .scale(new THREE.Vector3(modelTransform.scale * 20, -modelTransform.scale * 20, modelTransform.scale * 20))
+        .multiply(rotationX)
+        .multiply(rotationY)
+        .multiply(rotationZ);
+
+      camera.projectionMatrix = m.multiply(l);
+      renderer.resetState();
+      renderer.render(scene, camera);
+      map.triggerRepaint();
+    },
+  };
+  return customLayer;
+}
