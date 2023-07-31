@@ -4,7 +4,12 @@ import maplibregl, { Map, MercatorCoordinate, CustomLayerInterface, NavigationCo
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GUI } from "dat.gui";
 const truck =  require('../3d/car.glb');
+const samba = require("../3d/vanguard@samba.glb");
+const goofyrunning = require("../3d/vanguard@goofyrunning.glb");
+const vanguard = require("../3d/vanguard.glb");
+
 export function object3d(map: Map, coordinate: LngLatLike, name: string,layerName: string, height: number){
     const modelAltitude = 0;
     const modelRotate = [Math.PI / 2, 0, 0];
@@ -304,6 +309,209 @@ export function object3dcube(map: Map) {
       const l = new THREE.Matrix4()
         .makeTranslation(modelTransform.translateX, modelTransform.translateY, modelTransform.translateZ)
         .scale(new THREE.Vector3(modelTransform.scale * 20, -modelTransform.scale * 20, modelTransform.scale * 20))
+        .multiply(rotationX)
+        .multiply(rotationY)
+        .multiply(rotationZ);
+
+      camera.projectionMatrix = m.multiply(l);
+      renderer.resetState();
+      renderer.render(scene, camera);
+      map.triggerRepaint();
+    },
+  };
+  return customLayer;
+}
+
+export function object3dpeople(map: Map) {
+  const modelOrigin: [number, number] = [
+    105.84223694836123, 21.005074636894975
+  ];
+  const modelAltitude = 0;
+  const modelRotate = [Math.PI / 2, 0, 0];
+
+  const modelAsMercatorCoordinate = maplibregl.MercatorCoordinate.fromLngLat(
+    modelOrigin,
+    modelAltitude
+  );
+
+  const modelTransform = {
+    translateX: modelAsMercatorCoordinate.x,
+    translateY: modelAsMercatorCoordinate.y,
+    translateZ: modelAsMercatorCoordinate.z,
+    rotateX: modelRotate[0],
+    rotateY: modelRotate[1],
+    rotateZ: modelRotate[2],
+    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits(),
+  };
+
+  let mixer: THREE.AnimationMixer;
+  let modelReady = false;
+  let modelMesh: THREE.Object3D;
+  const animationActions: THREE.AnimationAction[] = [];
+  let activeAction: THREE.AnimationAction;
+  let lastAction: THREE.AnimationAction;
+  const targetQuaternion = new THREE.Quaternion();
+  
+  const customLayer: any = {
+    id: "3d-model100",
+    type: "custom",
+    renderingMode: "3d",
+    onAdd: function (map: Map, gl: WebGLRenderingContext) {
+      renderer = new THREE.WebGLRenderer({
+        canvas: map.getCanvas(),
+        context: gl,
+        antialias: true,
+      });
+
+      renderer.autoClear = false;
+
+      const gltfLoader = new GLTFLoader();
+      gltfLoader.load(
+        vanguard,
+        (gltf) => {
+          gltf.scene.traverse(function (child) {
+            if ((child as THREE.Mesh).isMesh) {
+              const m = child as THREE.Mesh;
+              m.castShadow = true;
+              m.frustumCulled = false;
+            }
+          });
+
+          mixer = new THREE.AnimationMixer(gltf.scene);
+
+          const animationAction = mixer.clipAction((gltf as any).animations[0]);
+          animationActions.push(animationAction);
+          animationsFolder.add(animations, "default");
+          activeAction = animationActions[0];
+
+          const carModel = gltf.scene;
+          carModel.scale.set(30, 30, 30);
+          carModel.rotation.y = 0;
+          scene.add(gltf.scene);
+          modelMesh = gltf.scene;
+
+          //add an animation from another file
+          gltfLoader.load(
+            samba,
+            (gltf) => {
+              console.log("loaded samba");
+              const animationAction = mixer.clipAction(
+                (gltf as any).animations[0]
+              );
+              animationActions.push(animationAction);
+              animationsFolder.add(animations, "samba");
+
+              gltfLoader.load(
+                goofyrunning,
+                (gltf) => {
+                    console.log('loaded goofyrunning')
+                    ;(gltf as any).animations[0].tracks.shift() //delete the specific track that moves the object forward while running
+                    const animationAction = mixer.clipAction(
+                        (gltf as any).animations[0]
+                    )
+                    animationActions.push(animationAction)
+                    animationsFolder.add(animations, 'goofyrunning')
+
+                    modelReady = true
+                },
+                (xhr) => {
+                    console.log(
+                        (xhr.loaded / xhr.total) * 100 + '% loaded'
+                    )
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+            },
+            (xhr) => {
+              console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        },
+        (xhr) => {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      const animations = {
+        default: function () {
+          setAction(animationActions[0]);
+        },
+        samba: function () {
+          setAction(animationActions[1]);
+        },
+        goofyrunning: function () {
+          setAction(animationActions[2])
+        },
+      };
+
+      const setAction = (toAction: THREE.AnimationAction) => {
+        if (toAction != activeAction) {
+          lastAction = activeAction;
+          activeAction = toAction;
+          lastAction.stop();
+          lastAction.fadeOut(0.2);
+          activeAction.reset();
+          activeAction.fadeIn(0.2);
+          activeAction.play();
+        }
+      };
+
+      const gui = new GUI();
+      const animationsFolder = gui.addFolder("Animations");
+      animationsFolder.open();
+
+      const clock = new THREE.Clock();
+      let delta = 0;
+      function animate() {
+        requestAnimationFrame(animate)
+        if (modelReady) {
+            delta = clock.getDelta()
+            mixer.update(delta)
+            if (!modelMesh.quaternion.equals(targetQuaternion)) {
+                modelMesh.quaternion.rotateTowards(targetQuaternion, delta * 10)
+            }
+        }
+        TWEEN.update()
+    }
+    
+    animate()   
+
+    },
+    render: function (gl: WebGLRenderingContext, matrix: number[]) {
+      const rotationX = new THREE.Matrix4().makeRotationAxis(
+        new THREE.Vector3(1, 0, 0),
+        modelTransform.rotateX
+      );
+      const rotationY = new THREE.Matrix4().makeRotationAxis(
+        new THREE.Vector3(0, 1, 0),
+        modelTransform.rotateY
+      );
+      const rotationZ = new THREE.Matrix4().makeRotationAxis(
+        new THREE.Vector3(0, 0, 1),
+        modelTransform.rotateZ
+      );
+
+      const m = new THREE.Matrix4().fromArray(matrix);
+      const l = new THREE.Matrix4()
+        .makeTranslation(
+          modelTransform.translateX,
+          modelTransform.translateY,
+          modelTransform.translateZ
+        )
+        .scale(
+          new THREE.Vector3(
+            modelTransform.scale,
+            -modelTransform.scale,
+            modelTransform.scale
+          )
+        )
         .multiply(rotationX)
         .multiply(rotationY)
         .multiply(rotationZ);
