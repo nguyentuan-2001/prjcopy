@@ -12,6 +12,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MapNew from "./mapnew";
 import { MapContext } from "../contexts/tabnamecontext";
+import { object3dcar1, object3dpeople } from "../map/object3d";
 const roads = require('../hust/bd.geojson');
 library.add(fas);
 
@@ -30,7 +31,6 @@ const FindWay = () => {
     const [isXeMayTime, setIsXeMayTime] = useState<string | undefined>();
     const [isOToLength, setIsOToLength] = useState<string | undefined>();
     const [isOToTime, setIsOToTime] = useState<string | undefined>();
-
 
     function resetSelectToDefault(selectElement: any) {
         selectElement.selectedIndex = 0; // Đặt lại thành phần được chọn đầu tiên
@@ -127,6 +127,15 @@ const FindWay = () => {
                 if (path) {
                     const pathSource = map.getSource('path') as any;
                     const coordinates = path.path;
+
+                    //animation people on path
+                    const pathLayer = map.getLayer('3d-model15') as any;
+                    if (pathLayer) {
+                        map.removeLayer('3d-model15');
+                    }
+                    const customLayer2= object3dcar1(map,coordinates, startPoint);
+                    map.addLayer(customLayer2);
+    
                     
                     if (pathSource) {
                         pathSource.setData({
@@ -253,36 +262,38 @@ const FindWay = () => {
 
     const searchPoint = (map: Map) => {
         const startResults = data.features.filter(function(feature) {
-            return feature.properties.name.toLowerCase().includes(startValue.toLowerCase());
-          });
-      
-          const endResults = data.features.filter(function(feature) {
-            return feature.properties.name.toLowerCase().includes(endValue.toLowerCase());
-          });
-      
-          var startPoint = startResults[0]?.geometry.coordinates;
-          console.log('Điểm bắt đầu:', startPoint);
-          var endPoint = endResults[0]?.geometry.coordinates;
-          console.log('Điểm kết thúc:', endPoint);
-      
-          const center = startPoint as maplibregl.LngLatLike;
-          map.setCenter(center);
-          map.setZoom(17.5);
-          findPath(startPoint, endPoint, map);
-    }
-    useEffect(() => {
-        const map = isCoordinate;
-        if (startValue && endValue) {
-          searchPoint(map);       
-        }
-    }, [startValue, endValue]);
+        return feature.properties.name.toLowerCase().includes(startValue.toLowerCase());
+        });
     
+        const endResults = data.features.filter(function(feature) {
+        return feature.properties.name.toLowerCase().includes(endValue.toLowerCase());
+        });
+    
+        var startPoint = startResults[0]?.geometry.coordinates;
+        console.log('Điểm bắt đầu:', startPoint);
+        var endPoint = endResults[0]?.geometry.coordinates;
+        console.log('Điểm kết thúc:', endPoint);
+    
+        const center = startPoint as maplibregl.LngLatLike;
+        map.setCenter(center);
+        map.setZoom(17.5);
+        findPath(startPoint, endPoint, map);
+    }
     const handleSwap = () => {
         // Đổi giá trị các select khi nhấn nút "Swap"
         const tempValue = startValue;
         setStartValue(endValue);
         setEndValue(tempValue);
     };
+    
+
+    useEffect(() => {
+        const map = isCoordinate;
+        if (startValue && endValue) {
+          searchPoint(map);
+        }
+      }, [startValue, endValue]);
+      
   
   return (
         <div id='navigation' style={{transform: isNavigation ? 'translateX(-200%)' : 'none'}}>
@@ -293,7 +304,7 @@ const FindWay = () => {
                 </svg>
                 <span>CLOSE</span>
             </div>
-            <MapNew />
+            <MapNew/>
             <div id='all__select'>
                 <div id='select__address'>
                     <div className='icon__select1'>

@@ -15,7 +15,7 @@ interface PropsMap {
 }
 
 const MapNew: React.FC<PropsMap> = ({
-
+  
 }) => {
 
   const { isList, setIsList } = useContext(MapContext)!;
@@ -226,7 +226,7 @@ const MapNew: React.FC<PropsMap> = ({
     }
     
     map.once('load', function () {
-      const rotationSpeed = 0.15;
+      const rotationSpeed = 0.05;
       rotateMapContinuously(map, 0, rotationSpeed);
     });
     
