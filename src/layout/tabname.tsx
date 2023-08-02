@@ -97,7 +97,7 @@ const TabName = () => {
         });
     };
 
-    const array = ["hall", "classroom", "quan", "library"];
+    const array = ["training department", "research center", "central department", "library", 'shop'];
     const ulRef = useRef(null);
     useEffect(() => {
         const ulElement = ulRef.current as any;
@@ -114,7 +114,7 @@ const TabName = () => {
               }
             });
           };
-        handleButtonClick("hall");
+        handleButtonClick(array[0]);
         document.getElementById("nav-khoa-tab")?.addEventListener("click", () => {
         handleButtonClick(array[0]);
         });
@@ -123,20 +123,14 @@ const TabName = () => {
         handleButtonClick(array[1]);
         });
     
-        document
-        .getElementById("nav-phong-tab")
-        ?.addEventListener("click", () => {
+        document.getElementById("nav-phong-tab")?.addEventListener("click", () => {
             handleButtonClick(array[2]);
         });
-        document
-        .getElementById("nav-thuvien-tab")
-        ?.addEventListener("click", () => {
+        document.getElementById("nav-thuvien-tab")?.addEventListener("click", () => {
             handleButtonClick(array[3]);
         });
     
-        document
-        .getElementById("nav-cuahang-tab")
-        ?.addEventListener("click", () => {
+        document.getElementById("nav-cuahang-tab")?.addEventListener("click", () => {
             handleButtonClick(array[4]);
         });
     }, []);

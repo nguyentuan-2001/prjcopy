@@ -695,7 +695,7 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
           return;
         }
       
-        const animationDuration = 9000; // Total animation duration for the whole path (adjust as needed)
+        const animationDuration = 30000; // Total animation duration for the whole path (adjust as needed)
 
         let currentIndex = 0;
       
@@ -805,3 +805,4 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
   };
   return customLayer;
 }
+

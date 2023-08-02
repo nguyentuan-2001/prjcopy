@@ -7,7 +7,7 @@ export const createMap = (): Map => {
     center: [105.843484, 21.005532],
     zoom: 17,
     maxZoom: 18.5,
-    minZoom: 15,
+    minZoom: 15.5,
     hash: 'map',
     pitch: 60,
     maxPitch: 85,

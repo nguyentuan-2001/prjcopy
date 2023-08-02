@@ -4,7 +4,7 @@ import data from '../hust/data.json';
 import { object3d, object3dcar, object3dcube } from './object3d';
 
 const roads = require('../hust/bd.geojson');
-const building = require('../hust/nha.geojson');
+const building = require('../hust/buildings.geojson');
 const bd =  require('../image/map2.png');
 
 
@@ -14,10 +14,15 @@ function overMap(map: Map){
       'type': 'image',
       'url': bd,
       'coordinates': [
-        [105.841220, 21.008358], 
-        [105.848130, 21.008358],
-        [ 105.848130,21.003014],
-        [ 105.841220,21.003014]
+        [105.841220, 21.008158], 
+        [105.848240, 21.008158],
+        [105.848240,21.003024],
+        [105.841220,21.003024]
+
+        // [105.841220, 21.008158], 
+        // [105.848090, 21.008158],
+        // [ 105.848090,21.003014],
+        // [ 105.841220,21.003014]
       ]
     });
     map.addLayer({
@@ -77,7 +82,7 @@ function overMap(map: Map){
       ) as NodeListOf<HTMLElement>;
 
       popups.forEach((popup) => {
-        if (currentZoom < 15.5) {
+        if (currentZoom < 15.7) {
           popup.style.opacity = "0";
         } else {
           popup.style.opacity = "1";
@@ -98,39 +103,40 @@ function overMap(map: Map){
       });
     });
 
-    const customLayer= object3dcar(map);
-    map.addLayer(customLayer);
+    // const customLayer= object3dcar(map);
+    // map.addLayer(customLayer);
 
     // const customLayer1= object3dcube(map);
     // map.addLayer(customLayer1);
 
 
-    // map.addLayer({
-    //   id: 'vin-name',
-    //   type: 'symbol',
-    //   source: 'vin-src',
-    //   layout: {
-    //     'text-field': ['format', ['get', 'name'], { 'font-scale': 1 }],
-    //     'text-size': [
-    //       'interpolate',
-    //       ['linear'],
-    //       ['zoom'],
-    //       15, 0, 15.5, 4, 16, 6, 16.5, 8, 17, 10, 17.5, 12, 18, 14, 18.5, 16, 19, 18
-    //     ],
-    //     'text-anchor': 'bottom', // Đặt text-anchor là 'bottom' để đẩy văn bản lên đỉnh các tòa nhà
-    //     'text-offset': ['interpolate', ['linear'], ['zoom'],
-    //       15, ['literal', [0, 0]], // Độ cao offset ban đầu
-    //       16, ['literal', [0, 0]], // Độ cao offset khi zoom lên
-    //       18, ['literal', [0, 0]] // Độ cao offset khi zoom lên cao hơn
-    //     ],
-    //     'text-font': ['DIN Offc Pro Bold', 'Arial Unicode MS Bold'] // Đặt kiểu chữ đậm
-    //   },
-    //   paint: {
-    //     'text-color': 'white',
-    //     'text-halo-color': 'black',
-    //     'text-halo-width': 1,
-    //   }
-    // });
+    map.addLayer({
+      id: 'vin-name',
+      type: 'symbol',
+      source: 'vin-src',
+      layout: {
+        'text-field': ['format', ['get', 'name'], { 'font-scale': 1 }],
+        'text-size': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          15, 0, 15.5, 4, 16, 6, 16.5, 8, 17, 10, 17.5, 12, 18, 14, 18.5, 16, 19, 18
+        ],
+        // 'text-anchor': 'bottom', // Đặt text-anchor là 'bottom' để đẩy văn bản lên đỉnh các tòa nhà
+        'text-offset': ['interpolate', ['linear'], ['zoom'],
+          15, ['literal', [0, 0]], // Độ cao offset ban đầu
+          16, ['literal', [0, -3]], // Độ cao offset khi zoom lên
+          18, ['literal', [0, -6]] 
+        ],
+        // 'text-offset': ['literal', [0, -3]],
+        'text-font': ['DIN Offc Pro Bold', 'Arial Unicode MS Bold'] // Đặt kiểu chữ đậm
+      },
+      paint: {
+        'text-color': 'white',
+        'text-halo-color': 'black',
+        'text-halo-width': 1,
+      }
+    });
 
     let layerCount = 1;
     for (const feature of data.features) { 

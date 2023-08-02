@@ -178,10 +178,7 @@ const MapNew: React.FC<PropsMap> = ({
     overMap(map);
 
     const marker = markerImage(map);
-
     setIsMarker(marker);
-
-    
 
     map.on("load", () => {
       searchAddress(map, marker);
@@ -203,10 +200,11 @@ const MapNew: React.FC<PropsMap> = ({
       showCompass: false, // hide the compass button
       showZoom: true, // show the zoom buttons
     });
-    map.addControl(nav, "bottom-right");
+    map.addControl(nav, "top-right");
 
     //showPopup(map,marker);
 
+    //rotate map
     function rotateMapContinuously(map: Map, angle: any, rotationSpeed: number) {
       map.rotateTo(angle, {});
       let stopRotation = false;

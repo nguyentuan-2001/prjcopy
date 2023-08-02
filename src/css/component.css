@@ -18,7 +18,7 @@
     background-color: #fffef8;
     border-right: 1px solid #eac870;
     z-index: 2;
-    transition: all 0.8;
+    transition: transform 0.8s;
 }
 .main__map{
     width: 100%;
