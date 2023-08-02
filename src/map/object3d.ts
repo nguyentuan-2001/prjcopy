@@ -707,7 +707,15 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
       
           const startOrigin = index === 0 ? modelOrigin.slice() : pathPoints[index - 1];
           const endOrigin = pathPoints[index];
-      
+          if (index < pathPoints.length - 1) {
+            const targetPoint = pathPoints[index+1];
+            const dx = endOrigin[0] - startOrigin[0];
+            const dy = endOrigin[1] - startOrigin[1];
+            // Tính góc xoay từ vector chỉ phương
+            const angleY = Math.atan2(dy, dx);   
+            modelTransform.rotateY = angleY ;
+          }
+
           new TWEEN.Tween({ x: startOrigin[0], y: startOrigin[1] })
             .to({ x: endOrigin[0], y: endOrigin[1] }, animationDuration / pathPoints.length)
             .onUpdate(({ x, y }) => {
@@ -722,25 +730,25 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
               modelTransform.scale =
               modelAsMercatorCoordinate.meterInMercatorCoordinateUnits();
 
-              if (index < pathPoints.length - 1) {
-                const targetPoint = pathPoints[index + 1];
-                const dx = targetPoint[0] - modelOrigin[0];
-                const dy = targetPoint[1] - modelOrigin[1];
+              // if (index < pathPoints.length - 1) {
+              //   const targetPoint = pathPoints[index + 1];
+              //   const dx = targetPoint[0] - modelOrigin[0];
+              //   const dy = targetPoint[1] - modelOrigin[1];
 
-                const angleY = Math.atan2(dy, dx) ;
-                modelTransform.rotateY = angleY ;
+              //   const angleY = Math.atan2(dy, dx) ;
+              //   modelTransform.rotateY = angleY ;
 
-                // // Cập nhật góc xoay theo trục z (mặt phẳng xy)
-                // const dz = modelAsMercatorCoordinate.z; // Điều này giả định xe di chuyển trên mặt phẳng z = 0
-                // const angleZ = Math.atan2(dz, Math.sqrt(dx*dx + dy*dy));
-                // modelTransform.rotateZ = -Math.PI / 2;
+              //   // // Cập nhật góc xoay theo trục z (mặt phẳng xy)
+              //   // const dz = modelAsMercatorCoordinate.z; // Điều này giả định xe di chuyển trên mặt phẳng z = 0
+              //   // const angleZ = Math.atan2(dz, Math.sqrt(dx*dx + dy*dy));
+              //   // modelTransform.rotateZ = -Math.PI / 2;
 
-                // Cập nhật góc xoay cho carModel
-                //carModel.rotation.x = modelTransform.rotateX;
-                //carModel.rotation.y = modelTransform.rotateY;
-                //carModel.rotation.z = modelTransform.rotateZ;
+              //   // Cập nhật góc xoay cho carModel
+              //   //carModel.rotation.x = modelTransform.rotateX;
+              //   //carModel.rotation.y = modelTransform.rotateY;
+              //   //carModel.rotation.z = modelTransform.rotateZ;
                 
-              }
+              // }
         
       
             })
