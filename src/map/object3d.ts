@@ -153,7 +153,6 @@ export function object3dcar(map: Map) {
   const modelOrigin: [number, number] = [105.84145126927344, 21.00462842065562];
   const modelAltitude = 0;
   const modelRotate = [Math.PI / 2, 0, 0];
-
   const modelAsMercatorCoordinate = maplibregl.MercatorCoordinate.fromLngLat(
     modelOrigin,
     modelAltitude
@@ -188,6 +187,7 @@ export function object3dcar(map: Map) {
 
       const loader = new GLTFLoader();
       loader.load(truck, (gltf) => {
+
         this.scene.add(gltf.scene);
       });
 
@@ -201,6 +201,7 @@ export function object3dcar(map: Map) {
 
       this.renderer.autoClear = false;
     },
+    
     render: function (gl: WebGLRenderingContext, matrix: number[]) {
       if (!this.camera) {
         this.camera = new THREE.PerspectiveCamera(
@@ -645,7 +646,7 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
 
   let mixer: THREE.AnimationMixer;
   let modelReady = false;
-  let modelMesh: THREE.Object3D;
+  let carModel: THREE.Object3D;
   const animationActions: THREE.AnimationAction[] = [];
   let activeAction: THREE.AnimationAction;
   let lastAction: THREE.AnimationAction;
@@ -667,8 +668,9 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
 
       const gltfLoader = new GLTFLoader();
       gltfLoader.load(truck, (gltf) => {
-        const carModel = gltf.scene;
+        carModel = gltf.scene;
         carModel.scale.set(30, 30, 30);
+        
         scene.add(carModel);
       
         function animate() {
@@ -677,6 +679,9 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
             //carModel.rotation.y += 0.1;
             // carModel.position.setX(1);
             // carModel.position.setZ(1);
+            // carModel.rotation.x = modelTransform.rotateX;
+            // carModel.rotation.y = modelTransform.rotateY;
+            // carModel.rotation.z = modelTransform.rotateZ;
           }
           TWEEN.update();
           renderer.render(scene, camera);
@@ -716,6 +721,28 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
               modelTransform.translateZ = modelAsMercatorCoordinate.z;
               modelTransform.scale =
               modelAsMercatorCoordinate.meterInMercatorCoordinateUnits();
+
+              if (index < pathPoints.length - 1) {
+                const targetPoint = pathPoints[index + 1];
+                const dx = targetPoint[0] - modelOrigin[0];
+                const dy = targetPoint[1] - modelOrigin[1];
+
+                const angleY = Math.atan2(dy, dx) ;
+                modelTransform.rotateY = angleY ;
+
+                // // Cập nhật góc xoay theo trục z (mặt phẳng xy)
+                // const dz = modelAsMercatorCoordinate.z; // Điều này giả định xe di chuyển trên mặt phẳng z = 0
+                // const angleZ = Math.atan2(dz, Math.sqrt(dx*dx + dy*dy));
+                // modelTransform.rotateZ = -Math.PI / 2;
+
+                // Cập nhật góc xoay cho carModel
+                //carModel.rotation.x = modelTransform.rotateX;
+                //carModel.rotation.y = modelTransform.rotateY;
+                //carModel.rotation.z = modelTransform.rotateZ;
+                
+              }
+        
+      
             })
             .onComplete(() => {
               animateToPoint(index + 1); // Move to the next point
