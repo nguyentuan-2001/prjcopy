@@ -9,7 +9,7 @@ function MapComponent(){
         <div className="all__map">
             <Header/>
             <div className="main__map">
-                <div id="map" />
+                <div id="map"/>
             </div>
             <TabName/>
             <Detail/>

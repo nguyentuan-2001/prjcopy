@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MapContext } from "../contexts/tabnamecontext";
+
 library.add(fas);
 
 const Header = () => {
@@ -17,6 +18,7 @@ const Header = () => {
     const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!;
     const {startValue, setStartValue} = useContext(MapContext)!;
     const {endValue, setEndValue} = useContext(MapContext)!;
+    const {isCoordinate, setIsCoordinate} = useContext(MapContext)!; 
 
     const openList = () => {
         setIsList(false);
@@ -59,6 +61,15 @@ const Header = () => {
         setEndValue('');
     };
     const [isOpen, setIsOpen] = useState(true)
+    
+    const {isSwitchOn, setIsSwitchOn} = useContext(MapContext)!; 
+
+    const handleStyleChange = () => {
+        setIsSwitchOn(!isSwitchOn);
+    };
+
+
+
 
   return (
     <div className="header_all">
@@ -73,6 +84,12 @@ const Header = () => {
             <div id='line_image'></div>
 
             <div id='list_p'>
+                <p id="input_onoff">
+                    <label className="switch">
+                        <input type="checkbox" checked={isSwitchOn} onChange={handleStyleChange} />
+                        <span className="slider"></span>
+                    </label>
+                </p>
                 <p onClick={openMap} style={{ color: isMap ? 'black' : '#9e9c9c' }}>BẢN ĐỒ</p>
                 <p onClick={openList} style={{ color: isList ? '#9e9c9c' : 'black' }}>KHU VỰC</p>
                 <p onClick={openSearch} style={{ color: isSearch ? '#9e9c9c' : 'black' }}>TÌM KIẾM</p>

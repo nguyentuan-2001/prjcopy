@@ -2621,6 +2621,207 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 8213042041,
+        "building": "dormitory",
+        "addr:housenumber": null,
+        "name": "Nhà thi đấu Bách Khoa",
+        "amenity": null,
+        "height": 10,
+        "operator": null,
+        "access": null,
+        "brand": null,
+        "layer": null,
+        "addr:city": null,
+        "addr:district": null,
+        "addr:province": null,
+        "addr:subdistrict": null,
+        "building:levels": null,
+        "addr:street": null,
+        "website": null,
+        "name:en": null,
+        "operator:type": null,
+        "internet_access:fee": null,
+        "air_conditioning": null,
+        "internet_access:ssid": null,
+        "email": null,
+        "internet_access": null,
+        "cuisine": null,
+        "brand:wikidata": null,
+        "takeaway": null,
+        "brand:wikipedia": null,
+        "level": null,
+        "addr:postcode": null,
+        "phone": null,
+        "location": null,
+        "opening_hours": null,
+        "smoking": null,
+        "addr:country": null
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              105.84651065726223,
+              21.003281773409014
+            ],
+            [
+              105.84687799466843,
+              21.002904548314362
+            ],
+            [
+              105.84719524061029,
+              21.003157071004495
+            ],
+            [
+              105.84681454547962,
+              21.003546765674145
+            ],
+            [
+              105.84651065726223,
+              21.003281773409014
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 8213042042,
+        "building": "dormitory",
+        "addr:housenumber": null,
+        "name": "Bể bơi Bách Khoa",
+        "amenity": null,
+        "height": 2,
+        "operator": null,
+        "access": null,
+        "brand": null,
+        "layer": null,
+        "addr:city": null,
+        "addr:district": null,
+        "addr:province": null,
+        "addr:subdistrict": null,
+        "building:levels": null,
+        "addr:street": null,
+        "website": null,
+        "name:en": null,
+        "operator:type": null,
+        "internet_access:fee": null,
+        "air_conditioning": null,
+        "internet_access:ssid": null,
+        "email": null,
+        "internet_access": null,
+        "cuisine": null,
+        "brand:wikidata": null,
+        "takeaway": null,
+        "brand:wikipedia": null,
+        "level": null,
+        "addr:postcode": null,
+        "phone": null,
+        "location": null,
+        "opening_hours": null,
+        "smoking": null,
+        "addr:country": null
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              105.8468112060375,
+              21.00362782207405
+            ],
+            [
+              105.84723197433738,
+              21.00317577640803
+            ],
+            [
+              105.84748577109048,
+              21.003378417738006
+            ],
+            [
+              105.84703160848034,
+              21.00379616976602
+            ],
+            [
+              105.8468112060375,
+              21.003634057177408
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": 8213042043,
+        "building": "dormitory",
+        "addr:housenumber": null,
+        "name": "Khu đại học tại chức",
+        "amenity": null,
+        "height": 10,
+        "operator": null,
+        "access": null,
+        "brand": null,
+        "layer": null,
+        "addr:city": null,
+        "addr:district": null,
+        "addr:province": null,
+        "addr:subdistrict": null,
+        "building:levels": null,
+        "addr:street": null,
+        "website": null,
+        "name:en": null,
+        "operator:type": null,
+        "internet_access:fee": null,
+        "air_conditioning": null,
+        "internet_access:ssid": null,
+        "email": null,
+        "internet_access": null,
+        "cuisine": null,
+        "brand:wikidata": null,
+        "takeaway": null,
+        "brand:wikipedia": null,
+        "level": null,
+        "addr:postcode": null,
+        "phone": null,
+        "location": null,
+        "opening_hours": null,
+        "smoking": null,
+        "addr:country": null
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              105.84641715324949,
+              21.002221799710853
+            ],
+            [
+              105.84651733617807,
+              21.002087743668554
+            ],
+            [
+              105.84703160854531,
+              21.00251796960876
+            ],
+            [
+              105.84693142561679,
+              21.002642672548376
+            ],
+            [
+              105.84641715324949,
+              21.002221799710853
+            ]
+          ]
+        ]
+      }
     }
   ]
 }

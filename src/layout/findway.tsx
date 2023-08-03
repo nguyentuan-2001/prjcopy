@@ -179,8 +179,9 @@ const FindWay = () => {
                     }
                     // map.moveLayer('path-layer', 'home-layer');
                     // map.moveLayer('path-layer1', 'home-layer');
-                    map.moveLayer('path-layer', '3d-building');
-                    map.moveLayer('path-layer1', '3d-building');
+                    // map.moveLayer('path-layer', 'radar-layer');
+                    map.moveLayer('path-layer1','3d-model15');
+                    map.moveLayer('path-layer','3d-model15');
                     
                     const coordinateStart = [startPoint,nearestPoint];  
                     const checkStart = map.getSource('dasharray1') as any;

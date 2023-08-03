@@ -31,6 +31,9 @@ interface MapContextProps {
     setIsCoordinate: any
     isMarker: any, 
     setIsMarker: any
+
+    isSwitchOn : boolean; 
+    setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface PropsAuthContext {
     children: ReactNode;
@@ -48,6 +51,7 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
     const [isBlockNavigation, setIsBlockNavigation] = useState(false);
     const [startValue, setStartValue] = useState('');
     const [endValue, setEndValue] = useState('');
+    const [isSwitchOn, setIsSwitchOn] = useState(true);
 
     const [isCoordinate, setIsCoordinate] = useState<any>();
     const [isMarker, setIsMarker] = useState<any>();
@@ -75,7 +79,10 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
         isCoordinate,
         setIsCoordinate,
         isMarker,
-        setIsMarker
+        setIsMarker,
+
+        isSwitchOn,
+        setIsSwitchOn,
     };
 
   return (

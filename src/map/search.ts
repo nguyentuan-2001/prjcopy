@@ -4,7 +4,7 @@ import data from '../hust/data.json';
 import { showLocationDetail } from './showinformation';
 
 
-export function updateSuggestions(suggestions: any[], map: Map, marker: Marker) {
+export function updateSuggestions(suggestions: any[], map: Map) {
     const searchInput = document.getElementById('search__address') as HTMLInputElement;
     const suggestionsList = document.getElementById('suggestions-list') as HTMLSelectElement;
     const searchText = searchInput.value.trim();
@@ -29,7 +29,6 @@ export function updateSuggestions(suggestions: any[], map: Map, marker: Marker) 
         li.prepend(img); 
         li.addEventListener('click', function() {
             const lngLat= suggestion.geometry.coordinates;
-            marker.setLngLat(lngLat); 
             map.setCenter(lngLat);
             map.setZoom(18);
             map.fitBounds(getBounds(suggestions), {
@@ -42,7 +41,7 @@ export function updateSuggestions(suggestions: any[], map: Map, marker: Marker) 
     suggestionsList.style.display = 'block';
 }
 
-export function searchAddress(map: Map, marker: Marker){
+export function searchAddress(map: Map){
   const searchInput = document.getElementById('search__address') as HTMLInputElement;
   searchInput.addEventListener('change', () => {
     const searchText = searchInput.value;
@@ -61,14 +60,12 @@ export function searchAddress(map: Map, marker: Marker){
     if (allAddress.length > 0) {
       const firstAddress = allAddress[0];
       const lngLat: [number, number] = firstAddress.geometry.coordinates as [number, number];
-      if (marker) {
-        marker.setLngLat(lngLat);
-        map.setCenter(lngLat);
-        map.setZoom(18);
-        map.fitBounds(getBounds(allAddress), {
-          padding: 50
-        });
-      }
+      map.setCenter(lngLat);
+      map.setZoom(18);
+      map.fitBounds(getBounds(allAddress), {
+        padding: 50
+      });
+      
       showLocationDetail(firstAddress);
     }
   });

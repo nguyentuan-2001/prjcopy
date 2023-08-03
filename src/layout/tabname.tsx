@@ -8,7 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MapContext } from "../contexts/tabnamecontext";
-import maplibregl,{ LngLatLike, Map, Marker } from "maplibre-gl";
+import maplibregl,{ LngLatLike, Map } from "maplibre-gl";
 import { showLocationDetail } from "../map/showinformation";
 library.add(fas);
 
@@ -64,8 +64,6 @@ const TabName = () => {
         setIsCuaHang(false);
     };
 
-    //showAddress(isCoordinate, isMarker, array);
-
     function getBounds(coordinates: maplibregl.LngLatLike) {
         const bounds = new maplibregl.LngLatBounds();
         bounds.extend(coordinates);
@@ -74,7 +72,6 @@ const TabName = () => {
  
     const {isCoordinate, setIsCoordinate} = useContext(MapContext)!; 
     const { isClose, setIsClose } = useContext(MapContext)!;
-    const {isMarker, setIsMarker} = useContext(MapContext)!; 
     const options = data.features.map((feature) => feature.properties.name);
     const [listItem, setListItem] = useState(options);
     const { isClickImage, setIsClickImage } = useContext(MapContext)!;
@@ -89,7 +86,6 @@ const TabName = () => {
         showLocationDetail(datas);
         setIsClickImage(name as any);
     
-        isMarker.setLngLat(coordinates);
         isCoordinate.setCenter(coordinates);
         isCoordinate.setZoom(18);
         isCoordinate.fitBounds(getBounds(coordinates), {
