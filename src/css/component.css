@@ -193,6 +193,7 @@
     transition: 0.6s ease;
     max-height: 100vh;
     overflow: auto;
+    overflow-x: hidden;
 }
 #img_detail{
     width: 100%;

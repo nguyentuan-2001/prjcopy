@@ -16,9 +16,12 @@ const Detail = () => {
 
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
     const {isClose, setIsClose} = useContext(MapContext)!; 
+    const {isHover, setIsHover} = useContext(MapContext)!;
+    const {isCoordinate, setIsCoordinate} = useContext(MapContext)!;  
 
     const closeDetail = () => {
         setIsClose(!isClose);
+        isCoordinate.setPaintProperty(`3d-building-${isHover}`, 'fill-extrusion-color', '#FFFFFF');
     };
 
     const { isMap, setIsMap } = useContext(MapContext)!;

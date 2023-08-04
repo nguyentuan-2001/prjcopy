@@ -31,6 +31,7 @@ const FindWay = () => {
     const [isXeMayTime, setIsXeMayTime] = useState<string | undefined>();
     const [isOToLength, setIsOToLength] = useState<string | undefined>();
     const [isOToTime, setIsOToTime] = useState<string | undefined>();
+    const {isHover, setIsHover} = useContext(MapContext)!;
 
     function resetSelectToDefault(selectElement: any) {
         selectElement.selectedIndex = 0; // Đặt lại thành phần được chọn đầu tiên
@@ -42,6 +43,8 @@ const FindWay = () => {
 
         setStartValue('');
         setEndValue('');
+
+        isCoordinate.setPaintProperty(`3d-building-${isHover}`, 'fill-extrusion-color', '#FFFFFF');
     };
 
     const options = data.features.map((feature) => feature.properties.name);
@@ -133,7 +136,8 @@ const FindWay = () => {
                     if (pathLayer) {
                         map.removeLayer('3d-model15');
                     }
-                    const customLayer2= object3dcar1(map,coordinates, startPoint);
+                    const time = bicycleTimeInMinutes*60*1000;
+                    const customLayer2= object3dcar1(map,coordinates, startPoint,time );
                     map.addLayer(customLayer2);
     
                     

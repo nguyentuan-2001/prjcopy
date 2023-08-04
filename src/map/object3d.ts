@@ -11,7 +11,9 @@ import * as THREE from "three";
 import TWEEN from "@tweenjs/tween.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GUI } from "dat.gui";
+import features from '../hust/features.json';
 const truck = require("../3d/car.glb");
+const cay1 = require("../3d/cay1.glb");
 const samba = require("../3d/vanguard@samba.glb");
 const goofyrunning = require("../3d/vanguard@goofyrunning.glb");
 const vanguard = require("../3d/vanguard.glb");
@@ -311,7 +313,7 @@ export function object3dcube(map: Map) {
       renderer.autoClear = false;
 
       const loader = new GLTFLoader();
-      loader.load(truck, (gltf) => {
+      loader.load(cay1, (gltf) => {
         const carModel = gltf.scene;
         //scene.add(carModel);
         const renderer = new THREE.WebGLRenderer();
@@ -624,7 +626,7 @@ export function object3dpeople(map: Map, isArrayPath: any) {
   return customLayer;
 }
 
-export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
+export function object3dcar1(map: Map, isArrayPath: any, startPoint: any, animationDuration: number) {
   let modelOrigin: [number, number] = startPoint;
   const modelAltitude = 0;
   const modelRotate = [Math.PI / 2, 0, 0];
@@ -694,8 +696,6 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
           console.warn("pathPoints array is empty or not provided.");
           return;
         }
-      
-        const animationDuration = 30000; // Total animation duration for the whole path (adjust as needed)
 
         let currentIndex = 0;
       
@@ -805,4 +805,11 @@ export function object3dcar1(map: Map, isArrayPath: any, startPoint: any) {
   };
   return customLayer;
 }
+
+
+
+
+
+
+
 

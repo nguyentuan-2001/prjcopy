@@ -2,11 +2,13 @@ import maplibregl, { Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import data from '../hust/data.json';
 import nha from '../hust/nha.json';
-import { object3d, object3dcar, object3dcube } from './object3d';
+import features from '../hust/features.json';
+import { object3d, object3dcar, object3dcube} from './object3d';
 
 const roads = require('../hust/bd.geojson');
+const border = require('../hust/water_areas.geojson');
 const building = require('../hust/buildings.geojson');
-const imgbd =  require('../image/map5.png');
+const imgbd =  require('../image/map6.png');
 
 
 function overMap(map: Map){
@@ -16,8 +18,8 @@ function overMap(map: Map){
       'url': imgbd,
       'coordinates': [
         [105.840820, 21.00848], 
-        [105.848240, 21.00848],
-        [105.848240, 21.00164],
+        [105.848260, 21.00848],
+        [105.848260, 21.00164],
         [105.840820, 21.00164]
 
         // [105.841220, 21.008158], 
@@ -51,11 +53,30 @@ function overMap(map: Map){
         "line-width": 2,
         },
     });
+
+    map.addSource("border", {
+      type: "geojson",
+      data: border,
+    });
+    
+    map.addLayer({
+      id: "border-id",
+      type: "fill-extrusion",
+      source: "border",
+      paint: {
+        "fill-extrusion-color": "#61677A",
+        "fill-extrusion-opacity": 0.7,
+        "fill-extrusion-height": 2, // Chiều cao của các đoạn đường (có thể thay đổi theo ý muốn)
+        "fill-extrusion-base": 0, // Độ cao của mặt đất (có thể thay đổi theo ý muốn)
+        
+      },
+    });
+    
+
     map.addSource('vin-src',{
       type:'geojson',
       data:data
     })
-
     // map.addSource('building',{
     //   type:'geojson',
     //   data:building
@@ -90,28 +111,19 @@ function overMap(map: Map){
         type: 'fill-extrusion',
         source: `building-${buildingId}`,
         paint: {
-          'fill-extrusion-color': '#E9B384', // Màu sắc fill-extrusion mặc định
+          'fill-extrusion-color': '#FFFFFF', // Màu sắc fill-extrusion mặc định
           'fill-extrusion-height': ['get', 'height'],
           'fill-extrusion-base': 0,
           'fill-extrusion-opacity': opacity,
         },
       });
-
-      map.on('mousemove', `3d-building-${buildingId}`, (e) => {
-        map.setPaintProperty(`3d-building-${buildingId}`, 'fill-extrusion-color', '#8BE8E5');
-      });
-      map.on('mouseleave', `3d-building-${buildingId}`, (e) => {
-        map.setPaintProperty(`3d-building-${buildingId}`, 'fill-extrusion-color', '#E9B384');
-      });
-      
     });
 
 
     // const customLayer= object3dcar(map);
     // map.addLayer(customLayer);
 
-    // const customLayer1= object3dcube(map);
-    // map.addLayer(customLayer1);
+    
 
 
     map.addLayer({
@@ -158,7 +170,7 @@ function overMap(map: Map){
     // }
 
 
-    
+
   });
 }
 
