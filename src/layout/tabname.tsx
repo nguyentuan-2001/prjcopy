@@ -16,10 +16,12 @@ library.add(fas);
 const TabName = () => {
     const { isList, setIsList } = useContext(MapContext)!;
     const { isMap, setIsMap } = useContext(MapContext)!;
-
+    const {isHover, setIsHover} = useContext(MapContext)!;
+    
     const closeTabName = () => {
         setIsList(true);
         setIsMap(true);
+        isCoordinate.setPaintProperty(`3d-building-${isHover}`, 'fill-extrusion-color', '#FFFFFF');
     };
 
     const [isKhoa, setIsKhoa] = useState(true); 

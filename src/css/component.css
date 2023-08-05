@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
@@ -617,7 +619,52 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
-  
+.sidebar{
+    position: absolute;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    position: fixed;
+    top: 80%;
+    transform: translateY(0);
+    width: 100%;
+    z-index: 1;
+}
+.ul_sidebar{
+    padding: 10px 30px;
+    list-style: none;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 50px;
+    box-shadow: 0px 4px 8px #00000033;
+}
+.ul_sidebar li{
+    padding: 0 10px;
+    margin: 0 12px;
+}
+.ul_sidebar_image{
+    display: flex;
+    justify-content: center;
+}
+.ul_sidebar_image img{
+    width: 32px;
+    height: 32px;
+}
+.ul_sidebar li span{
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+}
+.ul_sidebar_icon{
+    display: flex;
+    justify-content: center;
+}
+.ul_sidebar_icon svg{
+    color: #8a8a8a;
+}
+
+
 @media  only screen and  (max-width: 280px){
     .header_all{
         width: 50%;

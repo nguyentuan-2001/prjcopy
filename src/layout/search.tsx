@@ -11,10 +11,13 @@ library.add(fas);
 const Search = () => {
     const { isMap, setIsMap } = useContext(MapContext)!;
     const { isSearch, setIsSearch } = useContext(MapContext)!;
-
+    const {isHover, setIsHover} = useContext(MapContext)!;
+    const {isCoordinate, setIsCoordinate} = useContext(MapContext)!;  
+    
     const closeSearch = () => {
         setIsSearch(true);
         setIsMap(true);
+        isCoordinate.setPaintProperty(`3d-building-${isHover}`, 'fill-extrusion-color', '#FFFFFF');
     };
     
   return (
