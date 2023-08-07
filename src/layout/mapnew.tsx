@@ -41,7 +41,7 @@ const MapNew: React.FC<PropsMap> = ({
         id: 'background',
         type: 'background',
         paint: {
-          'background-color': '#deeed2',
+          'background-color': '#c4daab',
         },
       },
     ],
@@ -114,10 +114,10 @@ const MapNew: React.FC<PropsMap> = ({
       requestAnimationFrame(rotateCallback);
     }
     
-    map.once('load', function () {
-      const rotationSpeed = 0.05;
-      rotateMapContinuously(map, 0, rotationSpeed);
-    });
+    // map.once('load', function () {
+    //   const rotationSpeed = 0.05;
+    //   rotateMapContinuously(map, 0, rotationSpeed);
+    // });
 
 
     let clickedBuildingId: any = null;

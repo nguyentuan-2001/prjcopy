@@ -49,7 +49,7 @@ const Sidebar = () => {
                         <span>Phòng tuyển sinh</span><br />
                     </div>
                 </li>
-                <li> 
+                <li style={{borderRight: '1px solid black'}}> 
                     <div className="ul_sidebar_image">
                         <img src="../images/tatca.svg" alt="" />
                     </div>

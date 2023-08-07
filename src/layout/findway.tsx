@@ -16,22 +16,23 @@ import { object3dcar1, object3dpeople } from "../map/object3d";
 const roads = require('../hust/bd.geojson');
 library.add(fas);
 
-
+interface Suggestion {
+    properties: {
+        name: string;
+        height: number;
+        image_url_2: string;
+    };
+    // Bổ sung các thuộc tính khác nếu có
+}
 
 const FindWay = () => {
     const { isMap, setIsMap } = useContext(MapContext)!;
     const {isNavigation, setIsNavigation} = useContext(MapContext)!; 
     const {isBlockNavigation, setIsBlockNavigation} = useContext(MapContext)!; 
-    
     const [isDiBoLength, setIsDiBoLength] = useState<string | undefined>();
     const [isDiBoTime, setIsDiBoTime] = useState<string | undefined>();
-    const [isXeDapLength, setIsXeDapLength] = useState<string | undefined>();
-    const [isXeDapTime, setIsXeDapTime] = useState<string | undefined>();
-    const [isXeMayLength, setIsXeMayLength] = useState<string | undefined>();
-    const [isXeMayTime, setIsXeMayTime] = useState<string | undefined>();
-    const [isOToLength, setIsOToLength] = useState<string | undefined>();
-    const [isOToTime, setIsOToTime] = useState<string | undefined>();
     const {isHover, setIsHover} = useContext(MapContext)!;
+    
 
     function resetSelectToDefault(selectElement: any) {
         selectElement.selectedIndex = 0; // Đặt lại thành phần được chọn đầu tiên
@@ -112,21 +113,6 @@ const FindWay = () => {
                 const travelTimeInMinutes = travelTimeInHours * 60;
                 setIsDiBoTime(`${travelTimeInMinutes.toFixed(2)} phút`);
 
-                setIsXeDapLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
-                const bicycleTimeInHours = calculatedDistance / 20;
-                const bicycleTimeInMinutes = bicycleTimeInHours * 60;
-                setIsXeDapTime(`${bicycleTimeInMinutes.toFixed(2)} phút`);
-
-                setIsXeMayLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
-                const motorbikeTimeInHours = calculatedDistance / 40;
-                const motorbikeTimeInMinutes = motorbikeTimeInHours * 60;
-                setIsXeMayTime(`${motorbikeTimeInMinutes.toFixed(2)} phút`);
-
-                setIsOToLength(`${calculatedDistanceInMeters.toFixed(2)} m`);
-                const carTimeInHours = calculatedDistance / 60;
-                const carTimeInMinutes = carTimeInHours * 60;
-                setIsOToTime(`${carTimeInMinutes.toFixed(2)} phút`);
-
                 if (path) {
                     const pathSource = map.getSource('path') as any;
                     const coordinates = path.path;
@@ -136,7 +122,7 @@ const FindWay = () => {
                     if (pathLayer) {
                         map.removeLayer('3d-model15');
                     }
-                    const time = bicycleTimeInMinutes*60*1000;
+                    const time = travelTimeInMinutes*60*1000/2;
                     const customLayer2= object3dcar1(map,coordinates, startPoint,time );
                     map.addLayer(customLayer2);
     
@@ -290,6 +276,10 @@ const FindWay = () => {
         setStartValue(endValue);
         setEndValue(tempValue);
     };
+
+    const clickli = (suggestion: Suggestion) => {
+        setStartValue(suggestion.properties.name)
+    };
     
 
     useEffect(() => {
@@ -302,13 +292,20 @@ const FindWay = () => {
   
   return (
         <div id='navigation' style={{transform: isNavigation ? 'translateX(-200%)' : 'none'}}>
-            
-            <div id='close__detail' onClick={closeNavigation} >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
-                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                </svg>
-                <span>CLOSE</span>
+            <div className="img_close_top">
+                <div className="img_close">
+                    <img src="../images/digiuni.png" alt="" />
+                </div>
+                <div className="icon_close">
+                    <div id='close__detail' onClick={closeNavigation} >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                        </svg>
+                        <span>Đóng</span>
+                    </div>
+                </div>
             </div>
+        
             <MapNew/>
             <div id='all__select'>
                 <div id='select__address'>
@@ -349,110 +346,44 @@ const FindWay = () => {
                 </div>
             </div>
 
-            <div id='navigation__child' style={{display: isBlockNavigation ? 'block' : 'none'}}>
-                <ul className="nav nav-pills" id="ul_navigation" role="tablist">
-                    <li className="nav-item" role="presentation">
-                        <button className="nav-link active" id="pills-dibo" data-bs-toggle="pill" data-bs-target="#dibo" type="button" role="tab" aria-controls="dibo" aria-selected="true">
-                            <img src="../images/dibo.png" alt="" />
-                        </button>
-                        <p>{isDiBoTime}</p>
-                    </li>
-                    <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="pills-xedap" data-bs-toggle="pill" data-bs-target="#xedap" type="button" role="tab" aria-controls="xedap" aria-selected="false">
-                            <img src="../images/xedap.png" alt="" />
-                        </button>
-                        <p>{isXeDapTime}</p>
-                    </li>
-                    <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="pills-xemay" data-bs-toggle="pill" data-bs-target="#xemay" type="button" role="tab" aria-controls="xemay" aria-selected="false">
-                            <img src="../images/xemay.png" alt="" />
-                        </button>
-                        <p>{isXeMayTime}</p>
-                    </li>
-                    <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="pills-oto" data-bs-toggle="pill" data-bs-target="#oto" type="button" role="tab" aria-controls="oto" aria-selected="false">
-                            <img src="../images/oto.png" alt="" />
-                        </button>
-                        <p>{isOToTime}</p>
-                    </li>
-                </ul>
-                    <hr />
-                    
-                <div className="tab-content" id="pills-tabContent">
-                    <div className="tab-pane fade show active" id="dibo" role="tabpanel" aria-labelledby="pills-dibo">
-                        <div className='if-length'>
-                            <div className="row">
-                                <div className="col-2">
-                                    <div id='img_dibo'><img src="../images/dibo.png" alt="" /></div>
+            <div className="main_input_search" style={{display: isBlockNavigation ? 'none' : 'block'}}>
+                <div id='history__search'>
+                    <p>Tìm kiếm gần đây</p>
+                    <p>Cổng bắc</p>
+                </div>
+                <div id='list__address'>
+                    <p>Gợi ý</p>
+                    <ul id="ul_list_address">
+                        {data.features.map((suggestion, index) => (
+                            <li key={index} onClick={() => clickli(suggestion as any)} >
+                                <img src={suggestion.properties.image_url_2} alt="" />
+                                <div>
+                                    <p>{suggestion.properties.name}</p>
+                                    <span>{suggestion.properties.height}</span>
                                 </div>
-                                <div className="col-5">
-                                    <span>Đi thẳng</span>
-                                </div>
-                                <div className="col-5">
-                                    <div id='length'>
-                                        <b id='length_dibo'>{isDiBoLength}</b>
-                                        <p id='time_dibo'>{isDiBoTime}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+
+            <div className='if-length' style={{display: isBlockNavigation ? 'block' : 'none'}}>
+                <div className="row" >
+                    <div className="col-2">
+                        <div id='img_dibo'><img src="../images/dibo.png" alt="" /></div>
                     </div>
-                    <div className="tab-pane fade" id="xedap" role="tabpanel" aria-labelledby="pills-xedap">
-                        <div className='if-length'>
-                            <div className="row">
-                                <div className="col-2">
-                                    <div id='img_dibo'><img src="../images/xedap.png" alt="" /></div>
-                                </div>
-                                <div className="col-5">
-                                    <span>Đi thẳng</span>
-                                </div>
-                                <div className="col-5">
-                                    <div id='length'>
-                                        <b id='length_xedap'>{isXeDapLength}</b>
-                                        <p id='time_xedap'>{isXeDapTime}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col-5">
+                        <span>Đi thẳng</span>
                     </div>
-                    <div className="tab-pane fade" id="xemay" role="tabpanel" aria-labelledby="pills-xemay">
-                        <div className='if-length'>
-                            <div className="row">
-                                <div className="col-2">
-                                    <div id='img_dibo'><img src="../images/xemay.png" alt="" /></div>
-                                </div>
-                                <div className="col-5">
-                                    <span>Đi thẳng</span>
-                                </div>
-                                <div className="col-5">
-                                    <div id='length'>
-                                        <b id='length_xedap'>{isXeMayLength}</b>
-                                        <p id='time_xedap'>{isXeMayTime}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="tab-pane fade" id="oto" role="tabpanel" aria-labelledby="pills-oto">
-                        <div className='if-length'>
-                            <div className="row">
-                                <div className="col-2">
-                                    <div id='img_dibo'><img src="../images/oto.png" alt="" /></div>
-                                </div>
-                                <div className="col-5">
-                                    <span>Đi thẳng</span>
-                                </div>
-                                <div className="col-5">
-                                    <div id='length'>
-                                        <b id='length_xedap'>{isOToLength}</b>
-                                        <p id='time_xedap'>{isOToTime}</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className="col-5">
+                        <div id='length'>
+                            <b id='length_dibo'>{isDiBoLength}</b>
+                            <p id='time_dibo'>{isDiBoTime}</p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
   )

@@ -1,9 +1,9 @@
 import Search from "./search"
 import FindWay from "./findway"
 import Header from "./header"
-import TabName from "./tabname"
 import Detail from "./detail"
 import Sidebar from "./sidebar"
+import Alladdress from "./alladdress"
 
 function MapComponent(){
     return(
@@ -12,8 +12,8 @@ function MapComponent(){
             <div className="main__map">
                 <div id="map"/>
             </div>
+            <Alladdress/>
             <Sidebar/>
-            <TabName/>
             <Detail/>
             <Search/>
             <FindWay/>

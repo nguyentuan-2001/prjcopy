@@ -34,7 +34,7 @@ interface MapContextProps {
     setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
 
     isHover: any, 
-    setIsHover: any
+    setIsHover: any,
 }
 interface PropsAuthContext {
     children: ReactNode;
@@ -43,7 +43,7 @@ interface PropsAuthContext {
 const MapContext = createContext<MapContextProps | undefined>(undefined);
 
 const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
-    const [isList, setIsList] = useState(true); 
+    const [isList, setIsList] = useState(false); 
     const [isNavigation, setIsNavigation] = useState(true);
     const [isSearch, setIsSearch] = useState(true); 
     const [isClose, setIsClose] = useState(true); 
@@ -55,7 +55,6 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
     const [isSwitchOn, setIsSwitchOn] = useState(true);
 
     const [isCoordinate, setIsCoordinate] = useState<any>();
-    const [isMarker, setIsMarker] = useState<any>();
     const [isHover, setIsHover] = useState(null)
 
     const contextValue: MapContextProps = {
@@ -85,7 +84,8 @@ const MapProvider: React.FC<PropsAuthContext> = ({ children }) => {
         setIsSwitchOn,
 
         isHover, 
-        setIsHover
+        setIsHover,
+
     };
 
   return (

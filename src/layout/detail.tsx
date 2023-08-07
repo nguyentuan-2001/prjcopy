@@ -100,24 +100,39 @@ const Detail = () => {
     // }
 
     return(
-        <div id='detail' style={{transform: isClose ? 'translateX(-200%)' : 'none',}}>
-        <div id='close__detail' onClick={closeDetail} >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-            </svg>
-            <span>CLOSE</span>
+    <div id='detail' style={{transform: isClose ? 'translateX(-200%)' : 'none',}}>
+        <div className='name_detail_top'>
+            <p id='name_address_top'></p>
+            <div id='icon_close_detail' onClick={closeDetail} >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </div>
         </div>
+        
 
         <div id='img_detail'>
             <img id="img-address" src="" alt="" />
         </div>
 
         <p id='name__address'>Trường</p>
+        <p>Tòa nhà</p>
 
-        <div id='button__save'>
-            <button type="button" className="btn btn-warning" id='navigate' onClick={chiduong}>Chỉ đường tới đây</button>
-            <button type="button" className="btn btn-light">Lưu</button>
+        <div className="button__save">
+            <div className="frame-7"  id='navigate' onClick={chiduong}>
+                <div className="frame-6">
+                    <img className="navigator" src="../images/chiduong.svg" alt="navigator 1" />
+                    <div className="ch-ng-ti-y">Chỉ đường tới đây</div>
+                </div>
+            </div>
+            <div className="frame-29">
+                <div className="frame-6">
+                    <img className="bookmark" src="../images/luu.svg" alt="bookmark" />
+                    <div className="lu">Lưu</div>
+                </div>
+            </div>
         </div>
+
         <div id='all__information'>
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li className="nav-item" role="presentation">
@@ -146,6 +161,9 @@ const Detail = () => {
                     <div id='web'>
                         <img src="../images/web.png" alt="" />
                         <p><a href="#">sme.hust.edu.vn</a></p>
+                    </div><hr />
+                    <div id='description'>
+
                     </div>
                 </div>
                 <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">

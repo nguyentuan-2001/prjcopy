@@ -6,6 +6,11 @@ import { MapContext } from "../contexts/tabnamecontext";
 
 export function showLocationDetail(location: any) {
     const name = location.properties.name;
+    const name_top = document.getElementById("name_address_top") as HTMLDivElement;
+    if (name_top) {
+      name_top.innerHTML = name;
+    }
+
     const listul = document.getElementById("name__address") as HTMLDivElement;
     if (listul) {
       listul.innerHTML = name;
@@ -15,6 +20,12 @@ export function showLocationDetail(location: any) {
     const imgAddress = document.getElementById("img-address") as HTMLImageElement;
     if (imgAddress) {
       imgAddress.src = img;
+    }
+
+    const desc = location.properties.desc;
+    const description = document.getElementById("description") as HTMLImageElement;
+    if (description) {
+      description.innerHTML = desc;
     }
   }
 
